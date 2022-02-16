@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/20bananas/clientes', [ApiController::class, 'vbClientes'])->middleware(['auth'])->name('20bananas.clientes');
+Route::get('/20bananas/pedidos', [ApiController::class, 'vbPedidos'])->middleware(['auth'])->name('20bananas.pedidos');
+Route::get('/20bananas/productos', [ApiController::class, 'vbProductos'])->middleware(['auth'])->name('20bananas.productos');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

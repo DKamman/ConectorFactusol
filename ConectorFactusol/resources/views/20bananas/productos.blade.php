@@ -1,3 +1,3 @@
 <x-app-layout>
-{{ $response }}
+    {{ $response }}
 </x-app-layout>
