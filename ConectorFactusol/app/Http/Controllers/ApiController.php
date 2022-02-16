@@ -12,7 +12,7 @@ class ApiController extends Controller
 {
     public function vbClientes() {
         $apikey = '3741b78df9262be12be380987d275c6f';
-        $response = Clientes::getClientes($apikey);
+        $response = Clientes::getClientes($apikey)['records'];
 
         return view('20bananas.clientes', [
             'response' => $response,
@@ -21,7 +21,7 @@ class ApiController extends Controller
 
     public function vbPedidos() {
         $apikey = '3741b78df9262be12be380987d275c6f';
-        $response = Pedidos::getPedidos($apikey);
+        $response = Pedidos::getPedidos($apikey)['records'];
 
         return view('20bananas.pedidos', [
             'response' => $response,
@@ -30,7 +30,9 @@ class ApiController extends Controller
 
     public function vbProductos() {
         $apikey = '3741b78df9262be12be380987d275c6f';
-        $response = Productos::getProductos($apikey);
+        $response = Productos::getProductos($apikey)['records'];
+
+        // dd($response);
 
         return view('20bananas.productos', [
             'response' => $response,
