@@ -52,7 +52,7 @@
                             </x-slot>
 
                             <x-slot name=content>
-                                <x-jet-dropdown-link href="#">Clientes</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('factusol.clientes') }}">Clientes</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="#">Productos</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="#">Pedidos</x-jet-dropdown-link>
                             </x-slot>
