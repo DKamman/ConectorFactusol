@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
-class Clientes extends Model
+class Cliente extends Model
 {
     use HasFactory;
     protected $url = 'https://api.20bananas.com/v2.3.php/clientes';
@@ -35,7 +35,7 @@ class Clientes extends Model
 
     public function post()
     {
-
+        //
     }
 
 }
