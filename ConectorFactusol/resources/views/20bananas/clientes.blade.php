@@ -1,19 +1,22 @@
 <x-app-layout>
-    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto" class="">
-        <table class="inline">
+    <div style="display: flex; width: 100vw; justify-content: center; margin-top: .5rem;">
+        <h2>Clientes</h2>
+    </div>
+    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
+        <table class="text-xs">
             <thead>
-                <th class="p-1">Codcliente</th>
-                <th class="p-1">Codcomercial</th>
-                <th class="p-1">Nombrecliente</th>
-                <th class="p-1">Diasreparto</th>
+                <th class="p-6">Codcliente</th>
+                <th class="p-6">Codcomercial</th>
+                <th class="p-6">Nombrecliente</th>
+                <th class="p-6">Diasreparto</th>
             </thead>
             <tbody>
                 @foreach ($response as $record)
-                    <tr>
-                        <td>{{ $record['codcliente'] }}</td>
-                        <td>{{ $record['codcomercial'] }}</td>
-                        <td>{{ $record['nombrecliente'] }}</td>
-                        <td>{{ $record['diasreparto'] }}</td>
+                    <tr class="borders">
+                        <td class="p-6">{{ $record['codcliente'] }}</td>
+                        <td class="p-6">{{ $record['codcomercial'] }}</td>
+                        <td class="p-6">{{ $record['nombrecliente'] }}</td>
+                        <td class="p-6">{{ $record['diasreparto'] }}</td>
                     </tr>
                 @endforeach
             </tbody>

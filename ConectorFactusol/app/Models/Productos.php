@@ -34,7 +34,7 @@ class Productos extends Model
     * @param string    $apikey contains the apikey for authenticating the API
     * @return object   $response product data
     */
-    public function getProductos($apikey)
+    public function get($apikey)
     {
         $response = Http::withOptions([
             'verify' => false
@@ -43,5 +43,10 @@ class Productos extends Model
         ])->get('https://api.20bananas.com/v2.3.php/productos');
 
         return $response;
+    }
+
+    public function post() 
+    {
+        
     }
 }

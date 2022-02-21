@@ -1,46 +1,51 @@
 <x-app-layout>
-    <table>
-        <thead>
-            <th>Idpedido</th>
-            <th>Desdedispositivo</th>
-            <th>Codcliente</th>
-            <th>Nombrecliente</th>
-            <th>Fecha</th>
-            <th>Hora</th>
-            <th>Envioemail</th>
-            <th>Totalimporte</th>
-            <th>Enviado10</th>
-            <th>Servido10</th>
-            <th>IntegradoERP10</th>
-            <th>Codcomercial</th>
-            <th>ClienteParticular</th>
-            <th>Comentarios</th>
-            <th>TafechaEntregags</th>
-            <th>NumpedidoCliente</th>
-            <th>EnviadoPorComercial</th>
-        </thead>
-        <tbody>
-            @foreach ($response as $record)
-            <tr>
-                <td>{{ $record['Idpedido'] }}</td>
-                <td>{{ $record['Desdedispositivo'] }}</td>
-                <td>{{ $record['Codcliente'] }}</td>
-                <td>{{ $record['Nombrecliente'] }}</td>
-                <td>{{ $record['Fecha'] }}</td>
-                <td>{{ $record['Hora'] }}</td>
-                <td>{{ $record['Envioemail'] }}</td>
-                <td>{{ $record['Totalimporte'] }}</td>
-                <td>{{ $record['Enviado10'] }}</td>
-                <td>{{ $record['Servido10'] }}</td>
-                <td>{{ $record['IntegradoERP10'] }}</td>
-                <td>{{ $record['Codcomercial'] }}</td>
-                <td>{{ $record['ClienteParticular'] }}</td>
-                <td>{{ $record['Comentarios'] }}</td>
-                <td>{{ $record['TafechaEntregags'] }}</td>
-                <td>{{ $record['NumpedidoCliente'] }}</td>
-                <td>{{ $record['EnviadoPorComercial'] }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div style="display: flex; width: 100vw; justify-content: center; margin-top: .5rem;">
+        <h2>Pedidos</h2>
+    </div>
+    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
+        <table class="text-xs">
+            <thead>
+                <th class="p-6">Idpedido</th>
+                <th class="p-6">Desdedispositivo</th>
+                <th class="p-6">Codcliente</th>
+                <th class="p-6">Nombrecliente</th>
+                <th class="p-6">Fecha</th>
+                <th class="p-6">Hora</th>
+                <th class="p-6">Envioemail</th>
+                <th class="p-6">Totalimporte</th>
+                <th class="p-6">Enviado10</th>
+                <th class="p-6">Servido10</th>
+                <th class="p-6">IntegradoERP10</th>
+                <th class="p-6">Codcomercial</th>
+                <th class="p-6">ClienteParticular</th>
+                <th class="p-6">Comentarios</th>
+                <th class="p-6">TafechaEntregags</th>
+                <th class="p-6">NumpedidoCliente</th>
+                <th class="p-6">EnviadoPorComercial</th>
+            </thead>
+            <tbody>
+                @foreach ($response as $record)
+                <tr class="border">
+                    <td class="p-6">{{ $record['idpedido'] }}</td>
+                    <td class="p-6">{{ $record['desdedispositivo'] }}</td>
+                    <td class="p-6">{{ $record['codcliente'] }}</td>
+                    <td class="p-6">{{ $record['nombrecliente'] }}</td>
+                    <td class="p-6">{{ $record['fecha'] }}</td>
+                    <td class="p-6">{{ $record['hora'] }}</td>
+                    <td class="p-6">{{ $record['envioemail'] }}</td>
+                    <td class="p-6">{{ $record['totalimporte'] }}</td>
+                    <td class="p-6">{{ $record['enviado10'] }}</td>
+                    <td class="p-6">{{ $record['servido10'] }}</td>
+                    <td class="p-6">{{ $record['integradoERP10'] }}</td>
+                    <td class="p-6">{{ $record['codcomercial'] }}</td>
+                    <td class="p-6">{{ $record['clienteParticular'] }}</td>
+                    <td class="p-6">{{ $record['comentarios'] }}</td>
+                    {{-- <td class="p-6">{{ $record['tafechaEntregags'] }}</td> --}}
+                    <td class="p-6">{{ $record['numpedidoCliente'] }}</td>
+                    <td class="p-6">{{ $record['enviadoPorComercial'] }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </x-app-layout>

@@ -22,7 +22,7 @@ class Clientes extends Model
      * @param string    $apikey contains the apikey for authenticating the API
      * @return object   $response client data
      */
-    public function getClientes($apikey)
+    public function get($apikey)
     {
         $response = Http::withOptions([
             'verify' => false
@@ -31,6 +31,11 @@ class Clientes extends Model
         ])->get('https://api.20bananas.com/v2.3.php/clientes');
 
         return $response;
+    }
+
+    public function post()
+    {
+
     }
 
 }

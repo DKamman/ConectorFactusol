@@ -32,16 +32,24 @@ class Pedidos extends Model
     * Gets all order data from 20Banana's API
     * 
     * @param string    $apikey contains the apikey for authenticating the API
+    * @param string    $dateParam contains the order date in yyyy-mm-dd order
     * @return object   $response order data
     */
-    public function getPedidos($apikey)
+    public function get($apikey, $dateParam)
     {
+
+        // dd($dateParam);
         $response = Http::withOptions([
             'verify' => false
         ])->withHeaders([
             'apikey' => $apikey
-        ])->get('https://api.20bananas.com/v2.3.php/pedidos');
+        ])->get('https://api.20bananas.com/v2.3.php/pedidos/' . $dateParam);
 
         return $response;
+    }
+
+    public function post() 
+    {
+
     }
 }
