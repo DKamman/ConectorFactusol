@@ -43,7 +43,7 @@ class ApiController extends Controller
 
     public function factusolClientes() {
         $token = FactusolApi::getBearerToken();
-        $response['resultado'] = FactusolCliente::get($token);
+        $response = FactusolCliente::get($token)['resultado'];
 
         return view('factusol.clientes', [
             'response' => $response,
