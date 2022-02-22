@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\Pedido;
-use App\Models\FactusolCliente;
 use App\Models\FactusolApi;
+use App\Models\FactusolCliente;
+use App\Models\FactusolProducto;
 
 class ApiController extends Controller
 {
@@ -35,8 +36,6 @@ class ApiController extends Controller
         $apikey = '3741b78df9262be12be380987d275c6f';
         $response = Producto::get($apikey)['records'];
 
-        // dd($response);
-
         return view('20bananas.productos', [
             'response' => $response,
         ]);
@@ -44,15 +43,18 @@ class ApiController extends Controller
 
     public function factusolClientes() {
         $token = FactusolApi::getBearerToken();
-        $response = FactusolCliente::get($token)['resultado'];
-
-        // dd($response);
-
-        // foreach ($response[0] as $head) {
-        //     dd($head['columna']);
-        // }
+        $response['resultado'] = FactusolCliente::get($token);
 
         return view('factusol.clientes', [
+            'response' => $response,
+        ]);
+    }
+
+    public function factusolProductos() {
+        $token = FactusolApi::getBearerToken();
+        $response = FactusolProducto::get($token)['resultado'];
+
+        return view('factusol.productos', [
             'response' => $response,
         ]);
     }

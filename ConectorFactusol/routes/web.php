@@ -23,6 +23,7 @@ Route::get('/20bananas/pedidos', [ApiController::class, 'vbPedidos'])->middlewar
 Route::get('/20bananas/productos', [ApiController::class, 'vbProductos'])->middleware(['auth'])->name('20bananas.productos');
 
 Route::get('/factusol/clientes', [Apicontroller::class, 'factusolClientes'])->middleware(['auth'])->name('factusol.clientes');
+Route::get('/factusol/productos', [Apicontroller::class, 'factusolProductos'])->middleware(['auth'])->name('factusol.productos');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
