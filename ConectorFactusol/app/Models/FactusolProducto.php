@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 
-class FactusolCliente extends Model
+
+class FactusolProducto extends Model
 {
     use HasFactory;
 
@@ -16,11 +17,11 @@ class FactusolCliente extends Model
             'verify' => false,
         ])->withToken($token)
         ->withBody(
-            "{
-                'ejercicio':'2022',
-                'tabla':'F_CLI',
-                'filtro':'CODCLI > 0'
-            }", 'application/json'
+            '{
+                "ejercicio":"2022",
+                "tabla":"F_ART",
+                "filtro":"CODART != \'\'"
+            }', 'application/json'
         )->post('https://api.sdelsol.com/admin/CargaTabla');
 
         return $response;
