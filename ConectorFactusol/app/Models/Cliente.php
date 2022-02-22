@@ -33,9 +33,15 @@ class Cliente extends Model
         return $response;
     }
 
-    public function post()
+    public function post($apikey, $body)
     {
-        //
+        $response = Http::withOptions([
+            'verify' => false
+        ])->withHeaders([
+            'apikey' => $apikey
+        ])->post('https://api.20bananas.com/v2.3.php/clientes', $body);
+
+        dd($response);
     }
 
 }

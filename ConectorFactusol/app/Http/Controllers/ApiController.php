@@ -45,9 +45,10 @@ class ApiController extends Controller
         $token = FactusolApi::getBearerToken();
         $response = FactusolCliente::get($token)['resultado'];
 
-        return view('factusol.clientes', [
-            'response' => $response,
-        ]);
+        return $response;
+        // return view('factusol.clientes', [
+        //     'response' => $response,
+        // ]);
     }
 
     public function factusolProductos() {
@@ -58,4 +59,13 @@ class ApiController extends Controller
             'response' => $response,
         ]);
     }
+
+    public function postVbClientes() {
+        $apikey = '3741b78df9262be12be380987d275c6f';
+        $body = factusolClientes();
+
+        dd($body);
+
+        $response = factusolCliente::post($apikey, $body);
+    }    
 }
