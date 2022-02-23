@@ -21,8 +21,23 @@ class FactusolCliente extends Model
                 'tabla':'F_CLI',
                 'filtro':'CODCLI > 0'
             }", 'application/json'
-        )->post('https://api.sdelsol.com/admin/CargaTabla');
+        )->post('https://api.sdelsol.com/admin/CargaTabla')['resultado'];
 
-        return $response;
+        $array = array();
+
+        foreach ($response as $records) {
+            $client = [];
+            foreach ($records as $record) {                
+                if ($record['columna'] == 'CODCLI')  {
+                    array_push($client, $record);
+                };
+                if ($record['columna'] == 'NOCCLI')  {
+                    array_push($client, $record);
+                };
+            }
+            array_push($array, $client);
+        }
+
+        return $array;
     }
 }
