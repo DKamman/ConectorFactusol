@@ -10,6 +10,11 @@ class FactusolApi extends Model
 {
     use HasFactory;
 
+    /**
+     * Generates a bearer token from the Factusol API
+     * 
+     * @return string $response['resultado'] returns the bearer token
+     */
     public function getBearerToken() 
     {
         $response = Http::withOptions([

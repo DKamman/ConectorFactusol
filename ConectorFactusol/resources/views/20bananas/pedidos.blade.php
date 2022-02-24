@@ -5,23 +5,23 @@
     <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
         <table class="text-xs">
             <thead>
-                <th class="p-6">Idpedido</th>
-                <th class="p-6">Desdedispositivo</th>
-                <th class="p-6">Codcliente</th>
-                <th class="p-6">Nombrecliente</th>
-                <th class="p-6">Fecha</th>
-                <th class="p-6">Hora</th>
-                <th class="p-6">Envioemail</th>
-                <th class="p-6">Totalimporte</th>
-                <th class="p-6">Enviado10</th>
-                <th class="p-6">Servido10</th>
-                <th class="p-6">IntegradoERP10</th>
-                <th class="p-6">Codcomercial</th>
-                <th class="p-6">ClienteParticular</th>
-                <th class="p-6">Comentarios</th>
-                <th class="p-6">TafechaEntregags</th>
-                <th class="p-6">NumpedidoCliente</th>
-                <th class="p-6">EnviadoPorComercial</th>
+                <th class="p-6 border">Idpedido</th>
+                <th class="p-6 border">Desdedispositivo</th>
+                <th class="p-6 border">Codcliente</th>
+                <th class="p-6 border">Nombrecliente</th>
+                <th class="p-6 border">Fecha</th>
+                <th class="p-6 border">Hora</th>
+                <th class="p-6 border">Envioemail</th>
+                <th class="p-6 border">Totalimporte</th>
+                <th class="p-6 border">Enviado10</th>
+                <th class="p-6 border">Servido10</th>
+                <th class="p-6 border">IntegradoERP10</th>
+                <th class="p-6 border">Codcomercial</th>
+                <th class="p-6 border">ClienteParticular</th>
+                <th class="p-6 border">Comentarios</th>
+                <th class="p-6 border">TafechaEntregags</th>
+                <th class="p-6 border">NumpedidoCliente</th>
+                <th class="p-6 border">EnviadoPorComercial</th>
             </thead>
             <tbody>
                 @foreach ($response as $record)

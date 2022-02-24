@@ -5,11 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use App\Models\Cliente;
 
 class FactusolCliente extends Model
 {
     use HasFactory;
 
+    /**
+     * Gets all clients from the Factusol API and strips all unnecesary columns 
+     * and puts all usuable information into an object following the 20Bananas Data Model
+     * 
+     * @param string $token contains the bearer token for the API call
+     * @return array $array 
+     */
     public function get($token) 
     {
         $response = Http::withOptions([
@@ -26,18 +34,20 @@ class FactusolCliente extends Model
         $array = array();
 
         foreach ($response as $records) {
-            $client = [];
-            foreach ($records as $record) {                
+            $client = new Cliente;
+            foreach ($records as $record) {
                 if ($record['columna'] == 'CODCLI')  {
-                    array_push($client, $record);
+                    $client->codcliente = $record['dato'];
                 };
                 if ($record['columna'] == 'NOCCLI')  {
-                    array_push($client, $record);
+                    $client->nombrecliente = $record['dato'];
+                };
+                if ($record['columna'] == 'AGECLI')  {
+                    $client->codcomercial = $record['dato'];
                 };
             }
             array_push($array, $client);
         }
-
         return $array;
     }
 }

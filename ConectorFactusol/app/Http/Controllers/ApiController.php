@@ -12,60 +12,63 @@ use App\Models\FactusolCliente;
 use App\Models\FactusolProducto;
 
 class ApiController extends Controller
-{
-    public function vbClientes() {
-        $apikey = '3741b78df9262be12be380987d275c6f';
-        $response = Cliente::get($apikey)['records'];
+{   
+    protected $apikey = '3741b78df9262be12be380987d275c6f';
+
+    //Gets all clients from the 20Bananas API and renders them in a view
+    public function getVbClientes() {
+        $response = Cliente::get($this->apikey);
 
         return view('20bananas.clientes', [
             'response' => $response,
         ]);
     }
 
-    public function vbPedidos() {
-        $apikey = '3741b78df9262be12be380987d275c6f';
+    //Gets all orders from the 20Bananas API and renders them in a view
+    public function getVbPedidos() {
         $dateParam = "2022-02-08";
-        $response = Pedido::get($apikey, $dateParam)['records'];
+        $response = Pedido::get($this->apikey, $dateParam);
 
         return view('20bananas.pedidos', [
             'response' => $response,
         ]);
     }
 
-    public function vbProductos() {
-        $apikey = '3741b78df9262be12be380987d275c6f';
-        $response = Producto::get($apikey)['records'];
+    //Gets all products from the 20Bananas API and renders them in a view
+    public function getVbProductos() {
+        $response = Producto::get($this->apikey);
 
         return view('20bananas.productos', [
             'response' => $response,
         ]);
     }
 
-    public function factusolClientes() {
+    //Gets all clients from the Factusol API and renders them in a view
+    public function getFactusolClientes() {
         $token = FactusolApi::getBearerToken();
-        FactusolCliente::get($token);
+        $response = FactusolCliente::get($token);
 
-        // dd($response);
-        // return view('factusol.clientes', [
-        //     'response' => $response,
-        // ]);
+        return view('factusol.clientes', [
+            'response' => $response,
+        ]);
     }
 
-    public function factusolProductos() {
+    //Gets all products from the Factusol API and renders them in a view
+    public function getFactusolProductos() {
         $token = FactusolApi::getBearerToken();
-        $response = FactusolProducto::get($token)['resultado'];
+        $response = FactusolProducto::get($token);
 
         return view('factusol.productos', [
             'response' => $response,
         ]);
     }
 
+    //Gets all clients from the Factusol API and posts them to the 20Bananas database
     public function postVbClientes() {
         $apikey = '3741b78df9262be12be380987d275c6f';
         $token = FactusolApi::getBearerToken();
         $body = FactusolCliente::get($token);
-        dd($body);
 
-        $response = Cliente::post($apikey, $body);
+        Cliente::post($apikey, $body);
     }    
 }

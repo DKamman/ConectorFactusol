@@ -3,18 +3,18 @@
         <h2>Clientes</h2>
     </div>
     <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
-        <table class="text-xs">
+        <table class="text-xs" style="min-width: 100%;">
             <thead>
-                @foreach ($response[0] as $head)
-                    <th class="p-6">{{ $head['columna'] }}</th>
-                @endforeach
+                <th class="p-6 border">CodCliente</th>
+                <th class="p-6 border">NombreCliente</th>
+                <th class="p-6 border">CodComercial</th>
             </thead>
             <tbody>
-                @foreach ($response as $clients)
-                    <tr class="borders">
-                        @foreach ($clients as $client)
-                            <td class="p-6">{{ $client['dato'] }}</td>
-                        @endforeach
+                @foreach ($response as $client)
+                    <tr class="border">
+                        <td class="p-6">{{ $client->codcliente }}</td>
+                        <td class="p-6">{{ $client->nombrecliente }}</td>
+                        <td class="p-6">{{ $client->codcomercial }}</td>
                     </tr>
                 @endforeach
             </tbody>

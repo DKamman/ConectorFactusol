@@ -32,7 +32,7 @@ class Producto extends Model
     * Gets all product data from 20Banana's API
     * 
     * @param string    $apikey contains the apikey for authenticating the API
-    * @return object   $response product data
+    * @return array   $response['records'] product data
     */
     public function get($apikey)
     {
@@ -42,11 +42,11 @@ class Producto extends Model
             'apikey' => $apikey
         ])->get('https://api.20bananas.com/v2.3.php/productos');
 
-        return $response;
+        return $response['records'];
     }
 
     public function post() 
     {
-        
+        //
     }
 }
