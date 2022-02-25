@@ -18,12 +18,19 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/20bananas/clientes', [ApiController::class, 'vbClientes'])->middleware(['auth'])->name('20bananas.clientes');
-Route::get('/20bananas/pedidos', [ApiController::class, 'vbPedidos'])->middleware(['auth'])->name('20bananas.pedidos');
-Route::get('/20bananas/productos', [ApiController::class, 'vbProductos'])->middleware(['auth'])->name('20bananas.productos');
+//get call routes for 20 Bananas
+Route::get('/20bananas/clientes', [ApiController::class, 'getVbClientes'])->middleware(['auth'])->name('20bananas.clientes');
+Route::get('/20bananas/pedidos', [ApiController::class, 'getVbPedidos'])->middleware(['auth'])->name('20bananas.pedidos');
+Route::get('/20bananas/productos', [ApiController::class, 'getVbProductos'])->middleware(['auth'])->name('20bananas.productos');
 
-Route::get('/factusol/clientes', [Apicontroller::class, 'factusolClientes'])->middleware(['auth'])->name('factusol.clientes');
-Route::get('/factusol/productos', [Apicontroller::class, 'factusolProductos'])->middleware(['auth'])->name('factusol.productos');
+//get call routes for Factusol
+Route::get('/factusol/clientes', [Apicontroller::class, 'getFactusolClientes'])->middleware(['auth'])->name('factusol.clientes');
+Route::get('/factusol/productos', [Apicontroller::class, 'getFactusolProductos'])->middleware(['auth'])->name('factusol.productos');
+
+//post routes
+Route::get('/20bananas/postclientesview', [ApiController::class, 'postVbClientesView'])->middleware(['auth'])->name('20bananas.post.clientes.view');
+Route::get('/20bananas/postclientes', [ApiController::class, 'postVbClientes'])->middleware(['auth'])->name('20bananas.post.clientes');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

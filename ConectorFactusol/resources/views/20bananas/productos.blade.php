@@ -1,27 +1,29 @@
 <x-app-layout>
-    <div style="display: flex; width: 100vw; justify-content: center; margin-top: .5rem;">
-        <h2>Productos</h2>
-    </div>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Productos - 20 Bananas
+        </h2>
+    </x-slot>
     <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
         <table class="text-xs">
             <thead>
-                <th class="p-6">Referencia</th>
-                <th class="p-6">Nombre</th>
-                <th class="p-6">Activo</th>
+                <th class="p-6 border">Referencia</th>
+                <th class="p-6 border">Nombre</th>
+                <th class="p-6 border">Activo</th>
                 {{-- <th>Subfamilia</th> --}}
-                <th class="p-6">Familia</th>
-                <th class="p-6">Precio</th>
-                <th class="p-6">Unidad</th>
-                <th class="p-6">Unidadsxbulto</th>
-                <th class="p-6">Unidadbulto</th>
-                <th class="p-6">Unidadsxbulto2</th>
-                <th class="p-6">Unidadbulto2</th>
-                <th class="p-6">Vendounidad</th>
-                <th class="p-6">Vendobulto</th>
-                <th class="p-6">Vendobulto2</th>
-                <th class="p-6">Descripcion</th>
-                <th class="p-6">Tags</th>
-                <th class="p-6">Foto</th>
+                <th class="p-6 border">Familia</th>
+                <th class="p-6 border">Precio</th>
+                <th class="p-6 border">Unidad</th>
+                <th class="p-6 border">Unidadsxbulto</th>
+                <th class="p-6 border">Unidadbulto</th>
+                <th class="p-6 border">Unidadsxbulto2</th>
+                <th class="p-6 border">Unidadbulto2</th>
+                <th class="p-6 border">Vendounidad</th>
+                <th class="p-6 border">Vendobulto</th>
+                <th class="p-6 border">Vendobulto2</th>
+                <th class="p-6 border">Descripcion</th>
+                <th class="p-6 border">Tags</th>
+                <th class="p-6 border">Foto</th>
             </thead>
             <tbody>
                 @foreach ($response as $record)

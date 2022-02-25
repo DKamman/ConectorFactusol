@@ -11,6 +11,12 @@ class FactusolProducto extends Model
 {
     use HasFactory;
 
+    /**
+     * Gets all products from the Factusol API
+     * 
+     * @param string $token contains the bearer token for the API call
+     * @return array $response['resultado'] contains all product data 
+     */
     public function get($token) 
     {
         $response = Http::withOptions([
@@ -24,6 +30,6 @@ class FactusolProducto extends Model
             }', 'application/json'
         )->post('https://api.sdelsol.com/admin/CargaTabla');
 
-        return $response;
+        return $response['resultado'];
     }
 }
