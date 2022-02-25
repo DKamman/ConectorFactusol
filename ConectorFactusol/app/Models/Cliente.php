@@ -42,17 +42,30 @@ class Cliente extends Model
      */
     public function post($apikey, $body)
     {
-        $response = Http::withOptions([
+
+        if (!$apikey) {
+            return false;
+            exit;
+        }
+
+        if (!$body) {
+            return false;
+            exit;
+        }
+
+        Http::withOptions([
             'verify' => false
         ])->withHeaders([
             'apikey' => $apikey,
             'IMSURE' => 'true'
         ])->delete(Cliente::$url . '/*');
 
-        Http::withOptions([
+        $response = Http::withOptions([
             'verify' => false
         ])->withHeaders([
             'apikey' => $apikey
         ])->post(Cliente::$url, $body);
+
+        return $response;
     }
 }
