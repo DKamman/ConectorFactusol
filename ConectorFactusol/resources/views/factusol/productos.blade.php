@@ -1,7 +1,9 @@
 <x-app-layout>
-    <div style="display: flex; width: 100vw; justify-content: center; margin-top: .5rem;">
-        <h2>Productos</h2>
-    </div>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Clientes - Factusol
+        </h2>
+    </x-slot>
     <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
         <table class="text-xs" style="min-width: 100%;">
             <thead>
