@@ -4,7 +4,7 @@
             Clientes - Factusol
         </h2>
     </x-slot>
-    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
+    <div style="width:95vw; height:85vh; overflow: scroll; margin: 1rem auto;" class="bg-grey-100">
         <table class="text-xs" style="min-width: 100%;">
             <thead>
                 <th class="p-6 border">CodCliente</th>
