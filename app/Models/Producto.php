@@ -28,11 +28,13 @@ class Producto extends Model
     protected $tags;
     protected $foto;
 
+    public static $url = 'https://api.20bananas.com/v2.3.php/productos';
+
     /**
-    * Gets all product data from 20Banana's API
+    * Gets all product data from 20 Banana's API
     * 
     * @param string    $apikey contains the apikey for authenticating the API
-    * @return array   $response['records'] product data
+    * @return array   $response['records'] contains product data
     */
     public function get($apikey)
     {
@@ -40,13 +42,42 @@ class Producto extends Model
             'verify' => false
         ])->withHeaders([
             'apikey' => $apikey
-        ])->get('https://api.20bananas.com/v2.3.php/productos');
+        ])->get(Producto::$url);
 
         return $response['records'];
     }
 
-    public function post() 
+    /**
+     * POSTS all Product data to 20 Banana's API
+     * 
+     * @param string $apikey contains the apikey for authenticating the API
+     * @return array $response contains product data
+     */
+    public function post($apikey, $body) 
     {
-        //
+        if (!$apikey) {
+            return false;
+            exit;
+        }
+
+        if (!$body) {
+            return false;
+            exit;
+        }
+
+        Http::withOptions([
+            'verify' => false
+        ])->withHeaders([
+            'apikey' => $apikey,
+            'IMSURE' => 'true'
+        ])->delete(Producto::$url . '/*');
+
+        $response = Http::withOptions([
+            'verify' => false
+        ])->withHeaders([
+            'apikey' => $apikey
+        ])->post(Producto::$url, $body);
+
+        return $response;
     }
 }

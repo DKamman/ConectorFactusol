@@ -42,6 +42,7 @@
                                     POST
                                 </div>
                                 <x-jet-dropdown-link href="{{ route('20bananas.post.clientes.view') }}">Clientes to 20B</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('20bananas.post.productos.view') }}">Productos to 20B</x-jet-dropdown-link>
 
                             </x-slot>
     

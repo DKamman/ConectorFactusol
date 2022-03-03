@@ -28,8 +28,82 @@ class FactusolProducto extends Model
                 "tabla":"F_ART",
                 "filtro":"CODART != \'\'"
             }', 'application/json'
-        )->post('https://api.sdelsol.com/admin/CargaTabla');
+        )->post('https://api.sdelsol.com/admin/CargaTabla')['resultado'];
 
-        return $response['resultado'];
+        $array = array();
+
+        foreach ($response as $records) {
+            $product = new Producto;
+            foreach ($records as $record) {
+                if ($record['columna'] == 'CCOART')  {
+                    $product->referencia = $record['dato'];
+                };
+                if ($record['columna'] == 'DESART')  {
+                    $product->nombre = $record['dato'];
+                };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->activo = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->subfamilia = $record['dato'];
+                // };
+                if ($record['columna'] == 'FAMART')  {
+                    $product->familia = $record['dato'];
+                };
+                if ($record['columna'] == 'PCOART')  {
+                    $product->precio = $record['dato'];
+                };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                // if ($record['columna'] == 'DESART')  {
+                //     $product->nombre = $record['dato'];
+                // };
+                if ($record['columna'] == 'IMGART')  {
+                    $product->foto = $record['dato'];
+                };
+
+                //  $referencia;
+                //  $nombre;
+                //  $activo;
+                //  $subfamilia;
+                //  $familia;
+                //  $precio;
+                //  $unidad;
+                //  $unidadesxbulto;
+                //  $unidadbulto;
+                //  $unidadesxbulto2;
+                //  $unidadbulto2;
+                //  $vendounidad;
+                //  $vendobulto;
+                //  $vendobulto2;
+                //  $descripcion;
+                //  $tags;
+                //  $foto;
+            }
+            array_push($array, $product);
+        }
+        return $array;
     }
 }

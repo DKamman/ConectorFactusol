@@ -74,13 +74,34 @@ class ApiController extends Controller
         $response = Cliente::post($apikey, $body);
 
         if ($response == false) {
-            return redirect()->route('20bananas.clientes')->with('error', 'APIkey or body was empty');    
+            return redirect()->route('20bananas.clientes')->with('error', 'APIkey or body was incorrect');    
         }
 
         return redirect()->route('20bananas.clientes')->with('success', 'Clients updated successfully');
     }
 
+    //Gets all Products from the Factusol API and posts them to the 20Bananas database
+    public function postVbProductos() {
+        $apikey = '3741b78df9262be12be380987d275c6f';
+        $token = FactusolApi::getBearerToken();
+        $body = FactusolProducto::get($token);
+
+        $response = Producto::post($apikey, $body);
+
+        if ($response == false) {
+            return redirect()->route('20bananas.productos')->with('error', 'APIkey or body was incorrect');    
+        }
+
+        return redirect()->route('20bananas.productos')->with('success', 'Products updated successfully');
+    }
+
+    //Renders the POST clientes view to 20 Bananas
     public function postVbClientesView() {
         return view('20bananas.post.clientes');
+    }
+
+    //Renders the POST productos view to 20 Bananas
+    public function postVBProductosView() {
+        return view('20bananas.post.productos');
     }
 }
