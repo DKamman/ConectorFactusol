@@ -11,12 +11,12 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-12 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
 
-                    <div class="ml-3 relative inline-flex items-center">
+                    <div class="ml-6 relative inline-flex items-center">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
@@ -49,7 +49,7 @@
                         </x-jet-dropdown>
                     </div>
 
-                    <div class="ml-3 relative inline-flex items-center">
+                    <div class="ml-6 relative inline-flex items-center">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
