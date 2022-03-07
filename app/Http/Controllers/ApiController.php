@@ -86,11 +86,12 @@ class ApiController extends Controller
 
     //Gets all Products from the Factusol API and posts them to the 20Bananas database
     public function postVbProductos() {
-        $apikey = '3741b78df9262be12be380987d275c6f';
+        // $apikey = '3741b78df9262be12be380987d275c6f';
         $token = FactusolApi::getBearerToken();
         $body = FactusolProducto::get($token);
+        $filtered = FactusolProducto::filter($body);
 
-        $response = Producto::post($apikey, $body);
+        $response = Producto::post($this->apikey, $filtered);
 
         if ($response == false) {
             return redirect()->route('20bananas.productos')->with('error', 'APIkey or body was incorrect');    

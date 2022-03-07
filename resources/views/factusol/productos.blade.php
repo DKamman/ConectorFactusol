@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Clientes - Factusol
+            Productos - Factusol
         </h2>
     </x-slot>
     <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
@@ -30,7 +30,7 @@
                         <td class="p-6">{{ $product->referencia }}</td>
                         <td class="p-6">{{ $product->nombre }}</td>
                         <td class="p-6">Activo</td>
-                        <td class="p-6">Subfamilia</td>
+                        <td class="p-6">{{$product->subfamilia}}</td>
                         <td class="p-6">{{ $product->familia }}</td>
                         <td class="p-6">{{ $product->precio }}</td>
                         <td class="p-6">Unidad</td>

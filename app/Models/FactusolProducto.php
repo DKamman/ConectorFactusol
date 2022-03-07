@@ -48,9 +48,9 @@ class FactusolProducto extends Model
                 // if ($record['columna'] == 'DESART')  {
                 //     $product->activo = $record['dato'];
                 // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->subfamilia = $record['dato'];
-                // };
+                if ($record['columna'] == 'DETART')  {
+                    $product->subfamilia = $record['dato'];
+                };
                 if ($record['columna'] == 'FAMART')  {
                     $product->familia = $record['dato'];
                 };
