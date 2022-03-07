@@ -56,5 +56,41 @@
             </tbody>
         </table>
     </div>
+
+    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
+        <table class="text-xs">
+            <thead>
+                <th class="p-6 border">Idpedido</th>
+                <th class="p-6 border">Desdedispositivo</th>
+                <th class="p-6 border">Codcliente</th>
+                <th class="p-6 border">Nombrecliente</th>
+                <th class="p-6 border">Fecha</th>
+                <th class="p-6 border">Hora</th>
+                <th class="p-6 border">Envioemail</th>
+                <th class="p-6 border">Totalimporte</th>
+                <th class="p-6 border">Enviado10</th>
+                <th class="p-6 border">Servido10</th>
+                <th class="p-6 border">IntegradoERP10</th>
+                <th class="p-6 border">Codcomercial</th>
+                <th class="p-6 border">ClienteParticular</th>
+                <th class="p-6 border">Comentarios</th>
+                <th class="p-6 border">TafechaEntregags</th>
+                <th class="p-6 border">NumpedidoCliente</th>
+                <th class="p-6 border">EnviadoPorComercial</th>
+            </thead>
+            <tbody>
+                {{-- @foreach ($factusol as $records)
+                    @foreach ($records as $item)                        
+                        <tr class="border">
+                            <td class="p-6">{{ $item['dato'] }}</td>
+                            <td class="p-6">{{ $item['dato'] }}</td>
+                            <td class="p-6">{{ $item['dato'] }}</td>
+                            <td class="p-6">{{ $item['dato'] }}</td>
+                        </tr>
+                    @endforeach
+                @endforeach --}}
+            </tbody>
+        </table>
+    </div>
     @endif
 </x-app-layout>

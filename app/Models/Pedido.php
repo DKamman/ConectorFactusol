@@ -28,7 +28,7 @@ class Pedido extends Model
     protected $enviadoPorComercial;
     protected $productos;
 
-    public static $url = 'https://api.20bananas.com/v2.3.php/pedidos';
+    public static $url = 'https://api.20bananas.com/v2.3.php/pedidos/';
 
     /**
     * Gets all order data from 20Banana's API
@@ -48,8 +48,51 @@ class Pedido extends Model
         if ($response['response'] == 'ERROR') {
             return 'Unauthorized';
         }
-
         return $response['records'];
+    }
+
+    public function filter($response) {
+
+        $columnKeys =[ 
+            'idpedido', 
+            'desdedispositivo', 
+            'codcliente', 
+            'nombrecliente', 
+            'fecha', 
+            'hora', 
+            'envioemail', 
+            'totalimporte', 
+            'enviado10', 
+            'servido10', 
+            'integradoERP10',
+            'codcomercial', 
+            'clienteParticular', 
+            'comentarios', 
+            'fechaEntrega', 
+            'numpedidoCliente', 
+            'rutaReparto', 
+            'enviadoPorComercial',
+            'productos'
+        ];
+
+        $orderArray = array();
+        $order = array();
+        $orderColumna = array();
+        $i = 0;
+
+        foreach ($response as $records) {
+            foreach ($records as $record) {
+                $orderColumna['columna'] = $columnKeys[$i];
+                $orderColumna['dato'] = $record;
+                array_push($order, $orderColumna);
+                $i++;
+            }
+            array_push($orderArray, $order);
+            $i = 0;
+            $order = array();
+        }
+
+        return $orderArray;
     }
 
     public function post() 

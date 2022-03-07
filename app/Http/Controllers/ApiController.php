@@ -26,11 +26,14 @@ class ApiController extends Controller
 
     //Gets all orders from the 20Bananas API and renders them in a view
     public function getVbPedidos() {
-        $dateParam = "2022-02-08";
+        // $dateParam = "2022-02-08";
+        $dateParam = '';
         $response = Pedido::get($this->apikey, $dateParam);
+        $factusolData = Pedido::filter($response);
 
         return view('20bananas.pedidos', [
             'response' => $response,
+            'factusol' => $factusolData,
         ]);
     }
 
@@ -57,9 +60,10 @@ class ApiController extends Controller
     public function getFactusolProductos() {
         $token = FactusolApi::getBearerToken();
         $response = FactusolProducto::get($token);
+        $filtered = FactusolProducto::filter($response);
 
         return view('factusol.productos', [
-            'response' => $response,
+            'response' => $filtered,
         ]);
     }
 
@@ -95,8 +99,8 @@ class ApiController extends Controller
         return redirect()->route('20bananas.productos')->with('success', 'Products updated successfully');
     }
 
-    public function postFactusolPedidos($body) {
-        $body;
+    public function postFactusolPedidos() {
+        $response = Pedido::get($this->apikey, $dateParam);
     }
 
     //Renders the POST clientes view to 20 Bananas
