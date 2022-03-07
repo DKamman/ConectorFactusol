@@ -15,7 +15,7 @@ class Cliente extends Model
     protected $nombrecliente;
     protected $diasreparto;
 
-    public static $url = 'https://api.20bananas.com/v2.3.php/clientes';
+    public static $url = 'https://api.20bananas.com/v2.3.php/clientes/';
     
     /**
      * Gets all client data from 20Banana's API
@@ -30,6 +30,10 @@ class Cliente extends Model
         ])->withHeaders([
             'apikey' => $apikey
         ])->get(Cliente::$url);
+
+        if ($response['response'] == 'ERROR') {
+            return 'Unauthorized';
+        }
 
         return $response['records'];
     }

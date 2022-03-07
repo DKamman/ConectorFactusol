@@ -28,7 +28,7 @@ class Producto extends Model
     protected $tags;
     protected $foto;
 
-    public static $url = 'https://api.20bananas.com/v2.3.php/productos';
+    public static $url = 'https://api.20bananas.com/v2.3.php/productos/';
 
     /**
     * Gets all product data from 20 Banana's API
@@ -43,6 +43,10 @@ class Producto extends Model
         ])->withHeaders([
             'apikey' => $apikey
         ])->get(Producto::$url);
+
+        if ($response['response'] == 'ERROR') {
+            return 'Unauthorized';
+        }
 
         return $response['records'];
     }

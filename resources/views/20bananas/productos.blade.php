@@ -4,6 +4,12 @@
             Productos - 20 Bananas
         </h2>
     </x-slot>
+
+    @if ($response == "Unauthorized")
+    {{$response}}
+    @endif
+
+    @if ($response != "Unauthorized")
     <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
         <table class="text-xs">
             <thead>
@@ -50,4 +56,5 @@
             </tbody>
         </table>
     </div>
+    @endif
 </x-app-layout>

@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <img style="width: 42px; height: 42px" src="{{URL('/images/logo20bananas.png')}}" alt="">
                     </a>
                 </div>
 
@@ -74,6 +74,8 @@
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     POST
                                 </div>
+                                <x-jet-dropdown-link href="{{ route('factusol.post.pedidos.view') }}">Pedidos to Factusol</x-jet-dropdown-link>
+
                             </x-slot>
 
                         </x-jet-dropdown>

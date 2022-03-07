@@ -29,6 +29,11 @@
         </div>
     @endif
 
+    @if ($response == "Unauthorized")
+        {{$response}}
+    @endif
+
+    @if ($response != "Unauthorized")
     <div style="width:95vw; height:85vh; overflow: scroll; margin: 1rem auto;">
         <table class="text-xs" style="min-width: 100%;">
             <thead>
@@ -53,4 +58,5 @@
             </tbody>
         </table>
     </div>
+    @endif
 </x-app-layout>

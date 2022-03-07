@@ -95,13 +95,22 @@ class ApiController extends Controller
         return redirect()->route('20bananas.productos')->with('success', 'Products updated successfully');
     }
 
+    public function postFactusolPedidos($body) {
+        $body;
+    }
+
     //Renders the POST clientes view to 20 Bananas
     public function postVbClientesView() {
         return view('20bananas.post.clientes');
     }
 
     //Renders the POST productos view to 20 Bananas
-    public function postVBProductosView() {
+    public function postVbProductosView() {
         return view('20bananas.post.productos');
+    }
+
+    //Renderes the POST pedidos view to Factusol
+    public function postFactusolPedidosView() {
+        return view('factusol.post.pedidos');
     }
 }

@@ -34,6 +34,7 @@ Route::get('/20bananas/postproductos', [ApiController::class, 'postVbProductos']
 //POST view routes
 Route::get('/20bananas/postclientesview', [ApiController::class, 'postVbClientesView'])->middleware(['auth'])->name('20bananas.post.clientes.view');
 Route::get('/20bananas/postproductosview', [ApiController::class, 'postVbProductosView'])->middleware(['auth'])->name('20bananas.post.productos.view');
+Route::get('/factusol/postpedidosview', [ApiController::class, 'postFactusolPedidosView'])->middleware(['auth'])->name('factusol.post.pedidos.view');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

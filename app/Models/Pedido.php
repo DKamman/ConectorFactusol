@@ -28,6 +28,8 @@ class Pedido extends Model
     protected $enviadoPorComercial;
     protected $productos;
 
+    public static $url = 'https://api.20bananas.com/v2.3.php/pedidos';
+
     /**
     * Gets all order data from 20Banana's API
     * 
@@ -41,7 +43,11 @@ class Pedido extends Model
             'verify' => false
         ])->withHeaders([
             'apikey' => $apikey
-        ])->get('https://api.20bananas.com/v2.3.php/pedidos/' . $dateParam);
+        ])->get(Pedido::$url . $dateParam);
+
+        if ($response['response'] == 'ERROR') {
+            return 'Unauthorized';
+        }
 
         return $response['records'];
     }
