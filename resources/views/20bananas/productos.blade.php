@@ -10,13 +10,13 @@
     @endif
 
     @if ($response != "Unauthorized")
-    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
-        <table class="text-xs">
-            <thead>
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:80vh;">
+        <table class="text-xs w-full">
+            <thead class="bg-grey-200">
                 <th class="p-6 border">Referencia</th>
                 <th class="p-6 border">Nombre</th>
                 <th class="p-6 border">Activo</th>
-                {{-- <th>Subfamilia</th> --}}
+                <th class="p-6 border">Subfamilia</th>
                 <th class="p-6 border">Familia</th>
                 <th class="p-6 border">Precio</th>
                 <th class="p-6 border">Unidad</th>
@@ -37,7 +37,7 @@
                         <td class="p-6">{{ $record['referencia'] }}</td>
                         <td class="p-6">{{ $record['nombre'] }}</td>
                         <td class="p-6">{{ $record['activo'] }}</td>
-                        {{-- <td>{{ $record['subfamilia'] }}</td> --}}
+                        <td class="p-6">{{ $record['subfamilia'] }}</td>
                         <td class="p-6">{{ $record['familia'] }}</td>
                         <td class="p-6">{{ $record['precio'] }}</td>
                         <td class="p-6">{{ $record['unidad'] }}</td>

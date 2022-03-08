@@ -34,9 +34,9 @@
     @endif
 
     @if ($response != "Unauthorized")
-    <div style="width:95vw; height:85vh; overflow: scroll; margin: 1rem auto;">
-        <table class="text-xs" style="min-width: 100%;">
-            <thead>
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:85vh;">
+        <table class="text-xs w-full">
+            <thead class="bg-slate-200">
                 <th class="p-6 border">Codcliente</th>
                 <th class="p-6 border">Codcomercial</th>
                 <th class="p-6 border">Nombrecliente</th>

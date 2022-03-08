@@ -4,9 +4,9 @@
             Productos - Factusol
         </h2>
     </x-slot>
-    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
-        <table class="text-xs" style="min-width: 100%;">
-            <thead>
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:85vh;">
+        <table class="text-xs w-full">
+            <thead class="bg-grey-200">
                 <th class="p-6 border">Referencia</th>
                 <th class="p-6 border">Nombre</th>
                 <th class="p-6 border">Activo</th>
@@ -33,7 +33,7 @@
                         <td class="p-6">{{$product->subfamilia}}</td>
                         <td class="p-6">{{ $product->familia }}</td>
                         <td class="p-6">{{ $product->precio }}</td>
-                        <td class="p-6">Unidad</td>
+                        <td class="p-6">{{ $product->unidad }}</td>
                         <td class="p-6">unidadesxbulto</td>
                         <td class="p-6">unidadbulto</td>
                         <td class="p-6">unidadesxbulto2</td>

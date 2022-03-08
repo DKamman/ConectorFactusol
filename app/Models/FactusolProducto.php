@@ -11,6 +11,8 @@ class FactusolProducto extends Model
 {
     use HasFactory;
 
+    protected static $url = 'https://api.sdelsol.com/admin/CargaTabla/';
+
     /**
      * Gets all products from the Factusol API
      * 
@@ -28,62 +30,78 @@ class FactusolProducto extends Model
                 "tabla":"F_ART",
                 "filtro":"CODART != \'\'"
             }', 'application/json'
-        )->post('https://api.sdelsol.com/admin/CargaTabla')['resultado'];
+        )->post(FactusolProducto::$url)['resultado'];
 
         return $response;
     }
 
-    public function filter($response) {
+    public function filter($response, $token) {
         $array = array();
 
         foreach ($response as $records) {
             $product = new Producto;
             foreach ($records as $record) {
+                $familiaCodigo; 
+                $subfamiliaCodigo;
                 if ($record['columna'] == 'CCOART')  {
                     $product->referencia = $record['dato'];
                 };
                 if ($record['columna'] == 'DESART')  {
                     $product->nombre = $record['dato'];
                 };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->activo = $record['dato'];
-                // };
-                if ($record['columna'] == 'DETART')  {
-                    $product->subfamilia = $record['dato'];
-                };
-                if ($record['columna'] == 'FAMART')  {
-                    $product->familia = $record['dato'];
+                if ($record['columna'] == 'FAMART')  {   
+                    $subfamiliaCodigo = $record['dato'];               
+                    
+                    $response = Http::withOptions([
+                        'verify' => false,
+                    ])->withToken($token)
+                    ->withBody(
+                        '{
+                            "ejercicio":"2022",
+                            "tabla":"F_FAM",
+                            "filtro":"CODFAM = \''.$record["dato"].'\'"
+                        }', 'application/json'
+                    )->post(FactusolProducto::$url)['resultado'];
+
+                    foreach ($response as $records) {
+                        foreach ($records as $record) {
+                            if ($record['columna'] == 'DESFAM') {
+                                $product->subfamilia = $record['dato'];
+                            }
+                            if ($record['columna'] == 'SECFAM') {
+                                $familiaCodigo = $record['dato'];
+                                
+                                $response = Http::withOptions([
+                                    'verify' => false,
+                                ])->withToken($token)
+                                ->withBody(
+                                    '{
+                                        "ejercicio":"2022",
+                                        "tabla":"F_SEC",
+                                        "filtro":"CODSEC = \''.$record["dato"].'\'"
+                                    }', 'application/json'
+                                )->post(FactusolProducto::$url)['resultado'];
+
+                                foreach ($response as $records) {
+                                    foreach ($records as $record) {
+                                        if ($record['columna'] == 'DESSEC') {
+                                            $product->familia = $record['dato'];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
                 };
                 if ($record['columna'] == 'PCOART')  {
                     $product->precio = $record['dato'];
                 };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
-                // if ($record['columna'] == 'DESART')  {
-                //     $product->nombre = $record['dato'];
-                // };
+                if ($record['columna'] == 'UPPART')  {
+                    $product->unidad = $record['dato'];
+                };
+
                 if ($record['columna'] == 'IMGART')  {
                     $product->foto = $record['dato'];
                 };
@@ -105,6 +123,7 @@ class FactusolProducto extends Model
                 //  $descripcion;
                 //  $tags;
                 //  $foto;
+                
             }
             array_push($array, $product);
         }

@@ -10,9 +10,9 @@
     @endif
 
     @if ($response != "Unauthorized")
-    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
-        <table class="text-xs">
-            <thead>
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:85vh;">
+        <table class="text-xs w-full">
+            <thead class="bg-grey-200">
                 <th class="p-6 border">Idpedido</th>
                 <th class="p-6 border">Desdedispositivo</th>
                 <th class="p-6 border">Codcliente</th>
@@ -57,9 +57,9 @@
         </table>
     </div>
 
-    <div style="width:95vw; height:85vh; background:rgba(25,25,25,0.2); overflow: scroll; margin: 1rem auto;">
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:85vh;">
         <table class="text-xs">
-            <thead>
+            <thead class="bg-slate-200">
                 <th class="p-6 border">Idpedido</th>
                 <th class="p-6 border">Desdedispositivo</th>
                 <th class="p-6 border">Codcliente</th>
