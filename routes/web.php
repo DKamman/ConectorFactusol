@@ -30,6 +30,7 @@ Route::get('/factusol/productos', [Apicontroller::class, 'getFactusolProductos']
 //API POST routes
 Route::get('/20bananas/postclientes', [ApiController::class, 'postVbClientes'])->middleware(['auth'])->name('20bananas.post.clientes');
 Route::get('/20bananas/postproductos', [ApiController::class, 'postVbProductos'])->middleware(['auth'])->name('20bananas.post.productos');
+Route::get('/factusol/postpedidos', [ApiController::class, 'postFactusolPedidos'])->middleware(['auth'])->name('factusol.post.pedidos');
 
 //POST view routes
 Route::get('/20bananas/postclientesview', [ApiController::class, 'postVbClientesView'])->middleware(['auth'])->name('20bananas.post.clientes.view');

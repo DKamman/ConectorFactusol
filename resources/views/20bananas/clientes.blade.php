@@ -34,20 +34,20 @@
     @endif
 
     @if ($response != "Unauthorized")
-    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:85vh;">
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:80vh;">
         <table class="text-xs w-full">
-            <thead class="bg-slate-200">
-                <th class="p-6 border">Codcliente</th>
-                <th class="p-6 border">Codcomercial</th>
-                <th class="p-6 border">Nombrecliente</th>
-                <th class="p-6 border">Diasreparto</th>
+            <thead class="bg-gray-200">
+                <th class="p-6 border border-2 border-gray-100">Codcliente</th>
+                <th class="p-6 border border-2 border-gray-100">Codcomercial</th>
+                <th class="p-6 border border-2 border-gray-100">Nombrecliente</th>
+                <th class="p-6 border border-2 border-gray-100">Diasreparto</th>
             </thead>
             <tbody>
                 @foreach ($response as $record)
-                    <tr class="border">
-                        <td class="p-6">{{ $record['codcliente'] }}</td>
-                        <td class="p-6">{{ $record['codcomercial'] }}</td>
-                        <td class="p-6">{{ $record['nombrecliente'] }}</td>
+                    <tr class="border border-2 border-gray-100 hover:bg-orange-100 hover:ease-in-out duration-200">
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['codcliente'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['codcomercial'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['nombrecliente'] }}</td>
                         @if (!$record['diasreparto'])
                             <td class="p-6"><p>No especificado</p></td>
                         @else

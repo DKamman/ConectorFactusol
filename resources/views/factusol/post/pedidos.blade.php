@@ -5,6 +5,6 @@
         </h2>
     </x-slot>
     <div class="flex justify-center">
-        <a class="mt-6 p-6 rounded bg-yellow-400 text-white font-semibold" href="">POST</a>
+        <a class="mt-6 p-6 rounded bg-yellow-400 text-white font-semibold" href="{{ route('factusol.post.pedidos') }}">POST</a>
     </div>
 </x-app-layout>

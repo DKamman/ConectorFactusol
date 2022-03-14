@@ -43,15 +43,17 @@ class FactusolProducto extends Model
             foreach ($records as $record) {
                 $familiaCodigo; 
                 $subfamiliaCodigo;
+                if ($record['columna'] == 'CODART')  {
+                    // dd($record['dato']);
+                };
                 if ($record['columna'] == 'CCOART')  {
                     $product->referencia = $record['dato'];
                 };
                 if ($record['columna'] == 'DESART')  {
                     $product->nombre = $record['dato'];
                 };
-                if ($record['columna'] == 'FAMART')  {   
-                    $subfamiliaCodigo = $record['dato'];               
-                    
+                if ($record['columna'] == 'FAMART')  {
+                    // dd(print_r($record['dato']));         
                     $response = Http::withOptions([
                         'verify' => false,
                     ])->withToken($token)
@@ -68,9 +70,7 @@ class FactusolProducto extends Model
                             if ($record['columna'] == 'DESFAM') {
                                 $product->subfamilia = $record['dato'];
                             }
-                            if ($record['columna'] == 'SECFAM') {
-                                $familiaCodigo = $record['dato'];
-                                
+                            if ($record['columna'] == 'SECFAM') {                               
                                 $response = Http::withOptions([
                                     'verify' => false,
                                 ])->withToken($token)
@@ -92,8 +92,6 @@ class FactusolProducto extends Model
                             }
                         }
                     }
-
-
                 };
                 if ($record['columna'] == 'PCOART')  {
                     $product->precio = $record['dato'];
@@ -103,8 +101,13 @@ class FactusolProducto extends Model
                 };
 
                 if ($record['columna'] == 'IMGART')  {
+                    dd($record['dato']);
                     $product->foto = $record['dato'];
                 };
+                $product->unidadbulto = '';
+                $product->unidadbulto2 = '';
+                $product->unidadesxbulto = '';
+                $product->unidadesxbulto2 = '';
 
                 //  $referencia;
                 //  $nombre;
@@ -125,6 +128,7 @@ class FactusolProducto extends Model
                 //  $foto;
                 
             }
+            // dd($product);
             array_push($array, $product);
         }
         return $array;

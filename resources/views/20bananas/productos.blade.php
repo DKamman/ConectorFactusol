@@ -12,45 +12,45 @@
     @if ($response != "Unauthorized")
     <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:80vh;">
         <table class="text-xs w-full">
-            <thead class="bg-grey-200">
-                <th class="p-6 border">Referencia</th>
-                <th class="p-6 border">Nombre</th>
-                <th class="p-6 border">Activo</th>
-                <th class="p-6 border">Subfamilia</th>
-                <th class="p-6 border">Familia</th>
-                <th class="p-6 border">Precio</th>
-                <th class="p-6 border">Unidad</th>
-                <th class="p-6 border">Unidadsxbulto</th>
-                <th class="p-6 border">Unidadbulto</th>
-                <th class="p-6 border">Unidadsxbulto2</th>
-                <th class="p-6 border">Unidadbulto2</th>
-                <th class="p-6 border">Vendounidad</th>
-                <th class="p-6 border">Vendobulto</th>
-                <th class="p-6 border">Vendobulto2</th>
-                <th class="p-6 border">Descripcion</th>
-                <th class="p-6 border">Tags</th>
-                <th class="p-6 border">Foto</th>
+            <thead class="bg-gray-200">
+                <th class="p-6 border border-2 border-gray-100">Referencia</th>
+                <th class="p-6 border border-2 border-gray-100">Nombre</th>
+                <th class="p-6 border border-2 border-gray-100">Activo</th>
+                <th class="p-6 border border-2 border-gray-100">Subfamilia</th>
+                <th class="p-6 border border-2 border-gray-100">Familia</th>
+                <th class="p-6 border border-2 border-gray-100">Precio</th>
+                <th class="p-6 border border-2 border-gray-100">Unidad</th>
+                <th class="p-6 border border-2 border-gray-100">Unidadsxbulto</th>
+                <th class="p-6 border border-2 border-gray-100">Unidadbulto</th>
+                <th class="p-6 border border-2 border-gray-100">Unidadsxbulto2</th>
+                <th class="p-6 border border-2 border-gray-100">Unidadbulto2</th>
+                <th class="p-6 border border-2 border-gray-100">Vendounidad</th>
+                <th class="p-6 border border-2 border-gray-100">Vendobulto</th>
+                <th class="p-6 border border-2 border-gray-100">Vendobulto2</th>
+                <th class="p-6 border border-2 border-gray-100">Descripcion</th>
+                <th class="p-6 border border-2 border-gray-100">Tags</th>
+                <th class="p-6 border border-2 border-gray-100">Foto</th>
             </thead>
             <tbody>
                 @foreach ($response as $record)
-                    <tr class="border">
-                        <td class="p-6">{{ $record['referencia'] }}</td>
-                        <td class="p-6">{{ $record['nombre'] }}</td>
-                        <td class="p-6">{{ $record['activo'] }}</td>
-                        <td class="p-6">{{ $record['subfamilia'] }}</td>
-                        <td class="p-6">{{ $record['familia'] }}</td>
-                        <td class="p-6">{{ $record['precio'] }}</td>
-                        <td class="p-6">{{ $record['unidad'] }}</td>
-                        <td class="p-6">{{ $record['unidadesxbulto'] }}</td>
-                        <td class="p-6">{{ $record['unidadbulto'] }}</td>
-                        <td class="p-6">{{ $record['unidadesxbulto2'] }}</td>
-                        <td class="p-6">{{ $record['unidadbulto2'] }}</td>
-                        <td class="p-6">{{ $record['vendounidad'] }}</td>
-                        <td class="p-6">{{ $record['vendobulto'] }}</td>
-                        <td class="p-6">{{ $record['vendobulto2'] }}</td>
-                        <td class="p-6">{{ $record['descripcion'] }}</td>
-                        <td class="p-6">{{ $record['tags'] }}</td>
-                        <td class="p-6"><img src="{{ $record['foto'] }}" alt=""></td>
+                    <tr class="border border-2 border-gray-100 hover:bg-orange-100 hover:ease-in-out duration-200">
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['referencia'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['nombre'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['activo'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['subfamilia'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['familia'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['precio'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['unidad'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['unidadesxbulto'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['unidadbulto'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['unidadesxbulto2'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['unidadbulto2'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['vendounidad'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['vendobulto'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['vendobulto2'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['descripcion'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $record['tags'] }}</td>
+                        <td class="p-6 border border-2 border-gray-100"><img src="{{ $record['foto'] }}" alt=""></td>
                     </tr>
                 @endforeach
             </tbody>

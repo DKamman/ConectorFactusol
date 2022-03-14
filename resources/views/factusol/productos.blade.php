@@ -4,45 +4,47 @@
             Productos - Factusol
         </h2>
     </x-slot>
-    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:85vh;">
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:80vh;">
         <table class="text-xs w-full">
-            <thead class="bg-grey-200">
-                <th class="p-6 border">Referencia</th>
-                <th class="p-6 border">Nombre</th>
-                <th class="p-6 border">Activo</th>
-                <th class="p-6 border">Subfamilia</th>
-                <th class="p-6 border">Familia</th>
-                <th class="p-6 border">Precio</th>
-                <th class="p-6 border">Unidad</th>
-                <th class="p-6 border">unidadesxbulto</th>
-                <th class="p-6 border">unidadbulto</th>
-                <th class="p-6 border">unidadesxbulto2</th>
-                <th class="p-6 border">vendounidad</th>
-                <th class="p-6 border">vendobulto</th>
-                <th class="p-6 border">vendobulto2</th>
-                <th class="p-6 border">descripcion</th>
-                <th class="p-6 border">tags</th>
-                <th class="p-6 border">Foto</th>
+            <thead class="bg-gray-200">
+                <th class="p-6 border border-2 border-gray-100">Referencia</th>
+                <th class="p-6 border border-2 border-gray-100">Nombre</th>
+                <th class="p-6 border border-2 border-gray-100">Activo</th>
+                <th class="p-6 border border-2 border-gray-100">Subfamilia</th>
+                <th class="p-6 border border-2 border-gray-100">Familia</th>
+                <th class="p-6 border border-2 border-gray-100">Precio</th>
+                <th class="p-6 border border-2 border-gray-100">Unidad</th>
+                <th class="p-6 border border-2 border-gray-100">Unidadesxbulto</th>
+                <th class="p-6 border border-2 border-gray-100">Unidadbulto</th>
+                <th class="p-6 border border-2 border-gray-100">Unidadesxbulto2</th>
+                <th class="p-6 border border-2 border-gray-100">Unidadbulto2</th>
+                <th class="p-6 border border-2 border-gray-100">Vendounidad</th>
+                <th class="p-6 border border-2 border-gray-100">Vendobulto</th>
+                <th class="p-6 border border-2 border-gray-100">Vendobulto2</th>
+                <th class="p-6 border border-2 border-gray-100">Descripcion</th>
+                <th class="p-6 border border-2 border-gray-100">Tags</th>
+                <th class="p-6 border border-2 border-gray-100">Foto</th>
             </thead>
             <tbody>
                 @foreach ($response as $product)
-                    <tr class="border">
-                        <td class="p-6">{{ $product->referencia }}</td>
-                        <td class="p-6">{{ $product->nombre }}</td>
-                        <td class="p-6">Activo</td>
-                        <td class="p-6">{{$product->subfamilia}}</td>
-                        <td class="p-6">{{ $product->familia }}</td>
-                        <td class="p-6">{{ $product->precio }}</td>
-                        <td class="p-6">{{ $product->unidad }}</td>
-                        <td class="p-6">unidadesxbulto</td>
-                        <td class="p-6">unidadbulto</td>
-                        <td class="p-6">unidadesxbulto2</td>
-                        <td class="p-6">vendounidad</td>
-                        <td class="p-6">vendobulto</td>
-                        <td class="p-6">vendobulto2</td>
-                        <td class="p-6">descripcion</td>
-                        <td class="p-6">tags</td>
-                        <td class="p-6"><img src="{{ $product->foto }}" alt=""></td>
+                    <tr class="border border-2 border-gray-100 hover:bg-orange-100 hover:ease-in-out duration-200">
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->referencia }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->nombre }}</td>
+                        <td class="p-6 border border-2 border-gray-100">Activo</td>
+                        <td class="p-6 border border-2 border-gray-100">{{$product->subfamilia}}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->familia }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->precio }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->unidad }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->unidadesxbulto }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->unidadbulto }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->unidadesxbulto2 }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $product->unidadbulto2 }}</td>
+                        <td class="p-6 border border-2 border-gray-100">vendounidad</td>
+                        <td class="p-6 border border-2 border-gray-100">vendobulto</td>
+                        <td class="p-6 border border-2 border-gray-100">vendobulto2</td>
+                        <td class="p-6 border border-2 border-gray-100">descripcion</td>
+                        <td class="p-6 border border-2 border-gray-100">tags</td>
+                        <td class="p-6 border border-2 border-gray-100"><img src="{{ $product->foto }}" alt=""></td>
                     </tr>
                 @endforeach
             </tbody>

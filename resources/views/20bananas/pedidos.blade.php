@@ -10,47 +10,47 @@
     @endif
 
     @if ($response != "Unauthorized")
-    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:85vh;">
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:80vh;">
         <table class="text-xs w-full">
-            <thead class="bg-grey-200">
-                <th class="p-6 border">Idpedido</th>
-                <th class="p-6 border">Desdedispositivo</th>
-                <th class="p-6 border">Codcliente</th>
-                <th class="p-6 border">Nombrecliente</th>
-                <th class="p-6 border">Fecha</th>
-                <th class="p-6 border">Hora</th>
-                <th class="p-6 border">Envioemail</th>
-                <th class="p-6 border">Totalimporte</th>
-                <th class="p-6 border">Enviado10</th>
-                <th class="p-6 border">Servido10</th>
-                <th class="p-6 border">IntegradoERP10</th>
-                <th class="p-6 border">Codcomercial</th>
-                <th class="p-6 border">ClienteParticular</th>
-                <th class="p-6 border">Comentarios</th>
-                <th class="p-6 border">TafechaEntregags</th>
-                <th class="p-6 border">NumpedidoCliente</th>
-                <th class="p-6 border">EnviadoPorComercial</th>
+            <thead class="bg-gray-200">
+                <th class="p-6 border border-2 border-gray-100">Idpedido</th>
+                <th class="p-6 border border-2 border-gray-100">Desdedispositivo</th>
+                <th class="p-6 border border-2 border-gray-100">Codcliente</th>
+                <th class="p-6 border border-2 border-gray-100">Nombrecliente</th>
+                <th class="p-6 border border-2 border-gray-100">Fecha</th>
+                <th class="p-6 border border-2 border-gray-100">Hora</th>
+                <th class="p-6 border border-2 border-gray-100">Envioemail</th>
+                <th class="p-6 border border-2 border-gray-100">Totalimporte</th>
+                <th class="p-6 border border-2 border-gray-100">Enviado10</th>
+                <th class="p-6 border border-2 border-gray-100">Servido10</th>
+                <th class="p-6 border border-2 border-gray-100">IntegradoERP10</th>
+                <th class="p-6 border border-2 border-gray-100">Codcomercial</th>
+                <th class="p-6 border border-2 border-gray-100">ClienteParticular</th>
+                <th class="p-6 border border-2 border-gray-100">Comentarios</th>
+                <th class="p-6 border border-2 border-gray-100">TafechaEntregags</th>
+                <th class="p-6 border border-2 border-gray-100">NumpedidoCliente</th>
+                <th class="p-6 border border-2 border-gray-100">EnviadoPorComercial</th>
             </thead>
             <tbody>
                 @foreach ($response as $record)
-                <tr class="border">
-                    <td class="p-6">{{ $record['idpedido'] }}</td>
-                    <td class="p-6">{{ $record['desdedispositivo'] }}</td>
-                    <td class="p-6">{{ $record['codcliente'] }}</td>
-                    <td class="p-6">{{ $record['nombrecliente'] }}</td>
-                    <td class="p-6">{{ $record['fecha'] }}</td>
-                    <td class="p-6">{{ $record['hora'] }}</td>
-                    <td class="p-6">{{ $record['envioemail'] }}</td>
-                    <td class="p-6">{{ $record['totalimporte'] }}</td>
-                    <td class="p-6">{{ $record['enviado10'] }}</td>
-                    <td class="p-6">{{ $record['servido10'] }}</td>
-                    <td class="p-6">{{ $record['integradoERP10'] }}</td>
-                    <td class="p-6">{{ $record['codcomercial'] }}</td>
-                    <td class="p-6">{{ $record['clienteParticular'] }}</td>
-                    <td class="p-6">{{ $record['comentarios'] }}</td>
+                <tr class="border border-2 border-gray-100 hover:bg-orange-100 hover:ease-in-out duration-200">
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['idpedido'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['desdedispositivo'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['codcliente'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['nombrecliente'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['fecha'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['hora'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['envioemail'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['totalimporte'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['enviado10'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['servido10'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['integradoERP10'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['codcomercial'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['clienteParticular'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['comentarios'] }}</td>
                     {{-- <td class="p-6">{{ $record['tafechaEntregags'] }}</td> --}}
-                    <td class="p-6">{{ $record['numpedidoCliente'] }}</td>
-                    <td class="p-6">{{ $record['enviadoPorComercial'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['numpedidoCliente'] }}</td>
+                    <td class="p-6 border border-2 border-gray-100">{{ $record['enviadoPorComercial'] }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -59,24 +59,24 @@
 
     <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:85vh;">
         <table class="text-xs">
-            <thead class="bg-slate-200">
-                <th class="p-6 border">Idpedido</th>
-                <th class="p-6 border">Desdedispositivo</th>
-                <th class="p-6 border">Codcliente</th>
-                <th class="p-6 border">Nombrecliente</th>
-                <th class="p-6 border">Fecha</th>
-                <th class="p-6 border">Hora</th>
-                <th class="p-6 border">Envioemail</th>
-                <th class="p-6 border">Totalimporte</th>
-                <th class="p-6 border">Enviado10</th>
-                <th class="p-6 border">Servido10</th>
-                <th class="p-6 border">IntegradoERP10</th>
-                <th class="p-6 border">Codcomercial</th>
-                <th class="p-6 border">ClienteParticular</th>
-                <th class="p-6 border">Comentarios</th>
-                <th class="p-6 border">TafechaEntregags</th>
-                <th class="p-6 border">NumpedidoCliente</th>
-                <th class="p-6 border">EnviadoPorComercial</th>
+            <thead class="bg-gray-200">
+                <th class="p-6 border border-2 border-gray-100">Idpedido</th>
+                <th class="p-6 border border-2 border-gray-100">Desdedispositivo</th>
+                <th class="p-6 border border-2 border-gray-100">Codcliente</th>
+                <th class="p-6 border border-2 border-gray-100">Nombrecliente</th>
+                <th class="p-6 border border-2 border-gray-100">Fecha</th>
+                <th class="p-6 border border-2 border-gray-100">Hora</th>
+                <th class="p-6 border border-2 border-gray-100">Envioemail</th>
+                <th class="p-6 border border-2 border-gray-100">Totalimporte</th>
+                <th class="p-6 border border-2 border-gray-100">Enviado10</th>
+                <th class="p-6 border border-2 border-gray-100">Servido10</th>
+                <th class="p-6 border border-2 border-gray-100">IntegradoERP10</th>
+                <th class="p-6 border border-2 border-gray-100">Codcomercial</th>
+                <th class="p-6 border border-2 border-gray-100">ClienteParticular</th>
+                <th class="p-6 border border-2 border-gray-100">Comentarios</th>
+                <th class="p-6 border border-2 border-gray-100">TafechaEntregags</th>
+                <th class="p-6 border border-2 border-gray-100">NumpedidoCliente</th>
+                <th class="p-6 border border-2 border-gray-100">EnviadoPorComercial</th>
             </thead>
             <tbody>
                 {{-- @foreach ($factusol as $records)
