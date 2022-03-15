@@ -101,7 +101,7 @@ class FactusolProducto extends Model
                 };
 
                 if ($record['columna'] == 'IMGART')  {
-                    dd($record['dato']);
+                    // dd($record['dato']);
                     $product->foto = $record['dato'];
                 };
                 $product->unidadbulto = '';
