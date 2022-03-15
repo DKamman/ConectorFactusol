@@ -23,7 +23,7 @@ class Cliente extends Model
      * @param string    $apikey contains the apikey for authentication of the user on the 20Bananas API
      * @return object   $response client data
      */
-    public function get($apikey)
+    public static function get($apikey)
     {
         $response = Http::withOptions([
             'verify' => false
