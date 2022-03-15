@@ -32,7 +32,7 @@ class Cliente extends Model
         ])->get(Cliente::$url);
 
         if ($response['response'] == 'ERROR') {
-            dd($response['response']);
+            dd($response);
             return 'Unauthorized';
         }
 
