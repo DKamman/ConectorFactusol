@@ -15,7 +15,7 @@ class FactusolApi extends Model
      * 
      * @return string $response['resultado'] returns the bearer token
      */
-    public function getBearerToken() 
+    public static function getBearerToken() 
     {
         $response = Http::withOptions([
             'verify' => false,

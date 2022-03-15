@@ -11,7 +11,7 @@ class FactusolPedido extends Model
     use HasFactory;
     protected static $url = "https://api.sdelsol.com/admin/EscribirRegistro";
 
-    public function post($token, $body) {
+    public static function post($token, $body) {
         {
             $response = Http::withOptions([
                 'verify' => false,
@@ -27,7 +27,7 @@ class FactusolPedido extends Model
         }
     }
 
-    public function filter($response) {
+    public static function filter($response) {
         $columnKeys =[ 
             'idpedido', 
             'desdedispositivo', 

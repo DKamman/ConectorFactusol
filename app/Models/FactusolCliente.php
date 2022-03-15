@@ -18,7 +18,7 @@ class FactusolCliente extends Model
      * @param string $token contains the bearer token for the API call
      * @return array $array 
      */
-    public function get($token) 
+    public static function get($token) 
     {
         $response = Http::withOptions([
             'verify' => false,

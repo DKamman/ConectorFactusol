@@ -37,7 +37,7 @@ class Pedido extends Model
     * @param string    $dateParam contains the order date in yyyy-mm-dd order
     * @return array   $response['records'] order data
     */
-    public function get($apikey, $dateParam)
+    public static function get($apikey, $dateParam)
     {
         $response = Http::withOptions([
             'verify' => false
@@ -51,12 +51,12 @@ class Pedido extends Model
         return $response['records'];
     }
 
-    public function filter() {
-
+    public static function filter() {
+        //
     }
 
-    public function post() 
+    public static function post() 
     {
-
+        //
     }
 }

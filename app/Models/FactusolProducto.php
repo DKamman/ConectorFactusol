@@ -19,7 +19,7 @@ class FactusolProducto extends Model
      * @param string $token contains the bearer token for the API call
      * @return array $response['resultado'] contains all product data 
      */
-    public function get($token) 
+    public static function get($token) 
     {
         $response = Http::withOptions([
             'verify' => false,
@@ -35,7 +35,7 @@ class FactusolProducto extends Model
         return $response;
     }
 
-    public function filter($response, $token) {
+    public static function filter($response, $token) {
         $array = array();
 
         foreach ($response as $records) {

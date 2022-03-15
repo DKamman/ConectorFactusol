@@ -57,7 +57,7 @@ class Producto extends Model
      * @param string $apikey contains the apikey for authenticating the API
      * @return array $response contains product data
      */
-    public function post($apikey, $body) 
+    public static function post($apikey, $body) 
     {
         if (!$apikey) {
             return false;
