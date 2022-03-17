@@ -15,7 +15,7 @@ use Carbon\Carbon;
 
 class ApiController extends Controller
 {   
-    protected $dateParam = '2022-03-09';
+    protected $dateParam = '';
     protected $apikey = '3741b78df9262be12be380987d275c6f';
 
     //Gets all clients from the 20Bananas API and renders them in a view
