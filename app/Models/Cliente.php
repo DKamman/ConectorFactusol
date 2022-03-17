@@ -67,7 +67,8 @@ class Cliente extends Model
         ])->delete(Cliente::$url . '/*');
 
         $response = Http::withOptions([
-            'verify' => false
+            'verify' => false,
+            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey
         ])->post(Cliente::$url, $body);

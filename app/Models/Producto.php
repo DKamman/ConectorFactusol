@@ -39,7 +39,8 @@ class Producto extends Model
     public static function get($apikey)
     {
         $response = Http::withOptions([
-            'verify' => false
+            'verify' => false,
+            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey
         ])->get(Producto::$url);
@@ -70,14 +71,16 @@ class Producto extends Model
         }
 
         Http::withOptions([
-            'verify' => false
+            'verify' => false,
+            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey,
             'IMSURE' => 'true'
         ])->delete(Producto::$url . '/*');
 
         $response = Http::withOptions([
-            'verify' => false
+            'verify' => false,
+            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey
         ])->post(Producto::$url, $body);
