@@ -45,7 +45,7 @@ class Cliente extends Model
      * @param string $apikey contains the apikey for authentication of the user on the 20Bananas API
      * @param array $body contains all objects of clients
      */
-    public function post($apikey, $body)
+    public static function post($apikey, $body)
     {
 
         if (!$apikey) {
