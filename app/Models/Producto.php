@@ -36,7 +36,7 @@ class Producto extends Model
     * @param string    $apikey contains the apikey for authenticating the API
     * @return array   $response['records'] contains product data
     */
-    public function get($apikey)
+    public static function get($apikey)
     {
         $response = Http::withOptions([
             'verify' => false
