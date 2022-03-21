@@ -36,6 +36,7 @@ class FactusolProducto extends Model
     }
 
     public static function filter($response, $token) {
+
         $array = array();
 
         foreach ($response as $records) {

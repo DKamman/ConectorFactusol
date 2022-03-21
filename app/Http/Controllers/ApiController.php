@@ -11,6 +11,7 @@ use App\Models\FactusolApi;
 use App\Models\FactusolCliente;
 use App\Models\FactusolProducto;
 use App\Models\FactusolPedido;
+use App\Models\FactusolOferta;
 use Carbon\Carbon;
 
 class ApiController extends Controller
@@ -64,6 +65,16 @@ class ApiController extends Controller
         $filtered = FactusolProducto::filter($response, $token);
 
         return view('factusol.productos', [
+            'response' => $filtered,
+        ]);
+    }
+
+    public function getFactusolOfertas() {
+        $token = FactusolApi::getBearerToken();
+        $response = FactusolOferta::get($token);
+        $filtered = FactusolOferta::filter($response, $token);
+
+        return view('factusol.ofertas', [
             'response' => $filtered,
         ]);
     }

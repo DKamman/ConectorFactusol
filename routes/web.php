@@ -26,6 +26,7 @@ Route::get('/20bananas/productos', [ApiController::class, 'getVbProductos'])->mi
 //GET routes for Factusol
 Route::get('/factusol/clientes', [Apicontroller::class, 'getFactusolClientes'])->middleware(['auth'])->name('factusol.clientes');
 Route::get('/factusol/productos', [Apicontroller::class, 'getFactusolProductos'])->middleware(['auth'])->name('factusol.productos');
+Route::get('/factusol/ofertas', [Apicontroller::class, 'getFactusolOfertas'])->middleware(['auth'])->name('factusol.ofertas');
 
 //API POST routes
 Route::get('/20bananas/postclientes', [ApiController::class, 'postVbClientes'])->middleware(['auth'])->name('20bananas.post.clientes');

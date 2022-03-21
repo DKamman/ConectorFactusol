@@ -68,6 +68,7 @@
                                 </div>
                                 <x-jet-dropdown-link href="{{ route('factusol.clientes') }}">Clientes</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('factusol.productos') }}">Productos</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('factusol.ofertas') }}">Ofertas</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="#">Pedidos</x-jet-dropdown-link>
 
                                 <div class="border-t border-gray-100"></div>
