@@ -97,6 +97,7 @@ class ApiController extends Controller
         return redirect()->route('20bananas.productos')->with('success', 'Products updated successfully');
     }
 
+    //Posts all Orders from the 20Bananas API to the Factusol API
     public function postFactusolPedidos() {
         $token = FactusolApi::getBearerToken();
         $response = Pedido::get($this->apikey, $this->dateParam);
