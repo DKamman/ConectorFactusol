@@ -33,9 +33,10 @@ class FactusolOferta extends Model
         foreach ($response as $records) {
             $oferta = new Oferta;
             foreach ($records as $record) {
-                if ($record['columna'] == 'DESDES')
-                dd($record['dato']);
+                if ($record['columna'] == 'DESDES');
             }
         }
+
+        return $array;
     }
 }
