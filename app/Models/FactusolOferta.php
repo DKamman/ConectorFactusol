@@ -10,6 +10,8 @@ class FactusolOferta extends Model
 {
     use HasFactory;
 
+    protected static $url = 'https://api.sdelsol.com/admin/CargaTabla/';
+
     public static function get($token) {
         
         $response = Http::withOptions([
@@ -21,7 +23,7 @@ class FactusolOferta extends Model
                 "tabla":"F_DES",
                 "filtro":"ARFDES != \'\'"
             }', 'application/json'
-        )->post('https://api.sdelsol.com/admin/CargaTabla')['resultado'];
+        )->post(FactusolOferta::$url)['resultado'];
 
         return $response;
     }
@@ -30,13 +32,35 @@ class FactusolOferta extends Model
         
         $array = array();
 
+        // dd($response);
+
         foreach ($response as $records) {
             $oferta = new Oferta;
             foreach ($records as $record) {
-                if ($record['columna'] == 'DESDES');
+                if ($record['columna'] == 'ARFDES') {
+
+                    $subResponse = Http::withOptions([
+                        'verify' => false,
+                    ])->withToken($token)
+                    ->withBody(
+                        '{
+                            "ejercicio":"2022",
+                            "tabla":"F_ART",
+                            "filtro":"FAMART = \''.$record['dato'].'\'"
+                        }', 'application/json'
+                    )->post(FactusolOferta::$url)['resultado'];
+                    
+                    foreach ($subResponse as $records) {
+                        foreach ($records as $record) {   
+                            if ($record['columna'] == 'CCOART') {
+                                $oferta->referencia = $record['dato'];
+                            }
+                        }
+                    }
+                }
+                array_push($array, $oferta);
             }
         }
-
-        return $array;
+        dd($array);
     }
 }

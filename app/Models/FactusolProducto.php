@@ -45,7 +45,6 @@ class FactusolProducto extends Model
                 $familiaCodigo; 
                 $subfamiliaCodigo;
                 if ($record['columna'] == 'CODART')  {
-                    // dd($record['dato']);
                 };
                 if ($record['columna'] == 'CCOART')  {
                     $product->referencia = $record['dato'];
@@ -53,8 +52,7 @@ class FactusolProducto extends Model
                 if ($record['columna'] == 'DESART')  {
                     $product->nombre = $record['dato'];
                 };
-                if ($record['columna'] == 'FAMART')  {
-                    // dd(print_r($record['dato']));         
+                if ($record['columna'] == 'FAMART')  {       
                     $response = Http::withOptions([
                         'verify' => false,
                     ])->withToken($token)
