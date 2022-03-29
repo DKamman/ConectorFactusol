@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 use App\Models\Cliente;
 use App\Models\Producto;
 use App\Models\Pedido;
+use App\Models\Oferta;
 use App\Models\FactusolApi;
 use App\Models\FactusolCliente;
 use App\Models\FactusolProducto;
@@ -22,29 +23,66 @@ class ApiController extends Controller
     //Gets all clients from the 20Bananas API and renders them in a view
     public function getVbClientes() {
         $response = Cliente::get($this->apikey);
+        $clients = $response['records'];
+        $header = $response->headers();
+        $status = $response['response'];
+        $statusCode = $response->getStatusCode();
 
         return view('20bananas.clientes', [
-            'response' => $response,
+            'response' => $clients,
+            'header' => $header,
+            'status' => $status,
+            'statusCode' => $statusCode
         ]);
     }
 
     //Gets all orders from the 20Bananas API and renders them in a view
     public function getVbPedidos() {
         $response = Pedido::get($this->apikey, $this->dateParam);
+        $pedidos = $response['records'];
+        $header = $response->headers();
+        $status = $response['response'];
+        $statusCode = $response->getStatusCode();
+
         $factusolData = Pedido::filter($response);
 
         return view('20bananas.pedidos', [
-            'response' => $response,
+            'response' => $pedidos,
             'factusol' => $factusolData,
+            'header' => $header,
+            'status' => $status,
+            'statusCode' => $statusCode
         ]);
     }
 
     //Gets all products from the 20Bananas API and renders them in a view
     public function getVbProductos() {
         $response = Producto::get($this->apikey);
+        $productos = $response['records'];
+        $header = $response->headers();
+        $status = $response['response'];
+        $statusCode = $response->getStatusCode();
 
         return view('20bananas.productos', [
-            'response' => $response,
+            'response' => $productos,
+            'header' => $header,
+            'status' => $status,
+            'statusCode' => $statusCode
+        ]);
+    }
+
+    public function getVbOfertas() {
+        $response = Oferta::get($this->apikey);
+        $ofertas = $response['records'];
+        $header = $response->headers();
+        $status = $response['response'];
+        $statusCode = $response->getStatusCode();
+
+        return view('20bananas.ofertas', [
+            'response' => $ofertas,
+            'header' => $header,
+            'status' => $status,
+            'statusCode' => $statusCode
         ]);
     }
 
@@ -53,8 +91,18 @@ class ApiController extends Controller
         $token = FactusolApi::getBearerToken();
         $response = FactusolCliente::get($token);
 
+        // dd($response[1]);
+
+        $clientes = $response[0];
+        $header = $response[1]->headers();
+        $status = $response[1]['respuesta'];
+        $statusCode = $response[1]->getStatusCode();
+
         return view('factusol.clientes', [
-            'response' => $response,
+            'response' => $clientes,
+            'header' => $header,
+            'status' => $status,
+            'statusCode' => $statusCode
         ]);
     }
 
@@ -108,17 +156,33 @@ class ApiController extends Controller
         return redirect()->route('20bananas.productos')->with('success', 'Products updated successfully');
     }
 
+    public function postVbOfertas() {
+        $token = FactusolApi::getBearerToken();
+        $body = FactusolOferta::get($token);
+        $filtered = FactusolOferta::filter($body, $token);
+
+        $response = Oferta::post($this->apikey, $filtered);
+        // dd($response['response']);
+
+        if ($response == false || $response['response'] == "ERROR") {
+            return redirect()->route('20bananas.ofertas')->with('error', 'APIkey or body was incorrect');    
+        }
+
+        return redirect()->route('20bananas.ofertas')->with('success', 'Offers updated successfully');
+    }
+
     //Posts all Orders from the 20Bananas API to the Factusol API
     public function postFactusolPedidos() {
         $token = FactusolApi::getBearerToken();
         $response = Pedido::get($this->apikey, $this->dateParam);
         $filtered = FactusolPedido::filter($response);
-        $body = [
+        $body = 
+        `{
             [
                 "columna"=>"CODPLC",
                 "dato"=>"11111"
             ]
-        ];
+        }`;
 
         $posted = FactusolPedido::post($token, $body);
         dd($posted);
@@ -137,5 +201,9 @@ class ApiController extends Controller
     //Renderes the POST pedidos view to Factusol
     public function postFactusolPedidosView() {
         return view('factusol.post.pedidos');
+    }
+
+    public function postVbOfertasView() {
+        return view('20bananas.post.ofertas');
     }
 }

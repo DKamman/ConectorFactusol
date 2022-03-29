@@ -32,13 +32,9 @@ class FactusolOferta extends Model
         
         $array = array();
 
-        // dd($response);
-
         foreach ($response as $records) {
-            $oferta = new Oferta;
             foreach ($records as $record) {
                 if ($record['columna'] == 'ARFDES') {
-
                     $subResponse = Http::withOptions([
                         'verify' => false,
                     ])->withToken($token)
@@ -51,16 +47,19 @@ class FactusolOferta extends Model
                     )->post(FactusolOferta::$url)['resultado'];
                     
                     foreach ($subResponse as $records) {
-                        foreach ($records as $record) {   
+                        $oferta = new Oferta;
+                        foreach ($records as $record) {
                             if ($record['columna'] == 'CCOART') {
                                 $oferta->referencia = $record['dato'];
                             }
+                            $oferta->codcliente = "";
+                            $oferta->codtarifa = "";                            
                         }
+                        array_push($array, $oferta);
                     }
                 }
-                array_push($array, $oferta);
             }
         }
-        dd($array);
+        return $array;
     }
 }
