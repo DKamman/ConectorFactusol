@@ -49,7 +49,7 @@ class Pedido extends Model
         if ($response['response'] == 'ERROR') {
             return 'Unauthorized';
         }
-        return $response['records'];
+        return $response;
     }
 
     public static function filter() {

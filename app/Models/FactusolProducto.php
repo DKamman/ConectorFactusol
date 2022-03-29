@@ -30,7 +30,7 @@ class FactusolProducto extends Model
                 "tabla":"F_ART",
                 "filtro":"CODART != \'\'"
             }', 'application/json'
-        )->post(FactusolProducto::$url)['resultado'];
+        )->post(FactusolProducto::$url);
 
         return $response;
     }
@@ -39,7 +39,7 @@ class FactusolProducto extends Model
 
         $array = array();
 
-        foreach ($response as $records) {
+        foreach ($response['resultado'] as $records) {
             $product = new Producto;
             foreach ($records as $record) {
                 $familiaCodigo; 

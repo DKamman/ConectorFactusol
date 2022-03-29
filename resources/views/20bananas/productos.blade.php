@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Productos - 20 Bananas
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Productos - 20 Bananas</h2>
+            <p class="text-sm">{{ $header['Date'][0] }} - Status: {{ $status }} - Code: {{ $statusCode }}</p>
+        </div>
     </x-slot>
 
     @if ($response == "Unauthorized")
@@ -10,7 +11,7 @@
     @endif
 
     @if ($response != "Unauthorized")
-    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:80vh;">
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:75vh;">
         <table class="text-xs w-full">
             <thead class="bg-gray-200">
                 <th class="p-6 border border-2 border-gray-100">Referencia</th>

@@ -29,11 +29,11 @@ class FactusolCliente extends Model
                 'tabla':'F_CLI',
                 'filtro':'CODCLI > 0'
             }", 'application/json'
-        )->post('https://api.sdelsol.com/admin/CargaTabla')['resultado'];
+        )->post('https://api.sdelsol.com/admin/CargaTabla');
 
         $array = array();
 
-        foreach ($response as $records) {
+        foreach ($response['resultado'] as $records) {
             $client = new Cliente;
             foreach ($records as $record) {
                 if ($record['columna'] == 'CODCLI')  {
@@ -48,6 +48,7 @@ class FactusolCliente extends Model
             }
             array_push($array, $client);
         }
-        return $array;
+        return array($array, $response);
+        // dd($response);
     }
 }

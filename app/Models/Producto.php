@@ -49,7 +49,7 @@ class Producto extends Model
             return 'Unauthorized';
         }
 
-        return $response['records'];
+        return $response;
     }
 
     /**

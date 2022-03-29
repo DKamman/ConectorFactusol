@@ -23,7 +23,7 @@ class FactusolOferta extends Model
                 "tabla":"F_DES",
                 "filtro":"ARFDES != \'\'"
             }', 'application/json'
-        )->post(FactusolOferta::$url)['resultado'];
+        )->post(FactusolOferta::$url);
 
         return $response;
     }
@@ -32,7 +32,7 @@ class FactusolOferta extends Model
         
         $array = array();
 
-        foreach ($response as $records) {
+        foreach ($response['resultado'] as $records) {
             foreach ($records as $record) {
                 if ($record['columna'] == 'ARFDES') {
                     $subResponse = Http::withOptions([

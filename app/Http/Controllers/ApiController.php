@@ -112,8 +112,16 @@ class ApiController extends Controller
         $response = FactusolProducto::get($token);
         $filtered = FactusolProducto::filter($response, $token);
 
+        $productos = $filtered;
+        $header = $response->headers();
+        $status = $response['respuesta'];
+        $statusCode = $response->getStatusCode();
+
         return view('factusol.productos', [
-            'response' => $filtered,
+            'response' => $productos,
+            'header' => $header,
+            'status' => $status,
+            'statusCode' => $statusCode
         ]);
     }
 
@@ -122,8 +130,16 @@ class ApiController extends Controller
         $response = FactusolOferta::get($token);
         $filtered = FactusolOferta::filter($response, $token);
 
+        $productos = $filtered;
+        $header = $response->headers();
+        $status = $response['respuesta'];
+        $statusCode = $response->getStatusCode();
+
         return view('factusol.ofertas', [
             'response' => $filtered,
+            'header' => $header,
+            'status' => $status,
+            'statusCode' => $statusCode
         ]);
     }
 

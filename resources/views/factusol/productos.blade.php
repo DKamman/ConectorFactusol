@@ -1,12 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Productos - Factusol
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Productos - Factusol</h2>
+            <p class="text-sm">{{ $header['Date'][0] }} - Status: {{ $status }} - Code: {{ $statusCode }}</p>
+        </div>
     </x-slot>
-    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:80vh;">
+    <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:75vh;">
         <table class="text-xs w-full">
             <thead class="bg-gray-200">
+                <th class="p-6 border border-2 border-gray-100">Update</th>
                 <th class="p-6 border border-2 border-gray-100">Referencia</th>
                 <th class="p-6 border border-2 border-gray-100">Nombre</th>
                 <th class="p-6 border border-2 border-gray-100">Activo</th>
@@ -28,6 +30,7 @@
             <tbody>
                 @foreach ($response as $product)
                     <tr class="border border-2 border-gray-100 hover:bg-orange-100 hover:ease-in-out duration-200">
+                        <td class="p-6 border border-2 border-gray-100"><a class="hover:underline" href="#">Update Product</a></td>
                         <td class="p-6 border border-2 border-gray-100">{{ $product->referencia }}</td>
                         <td class="p-6 border border-2 border-gray-100">{{ $product->nombre }}</td>
                         <td class="p-6 border border-2 border-gray-100">Activo</td>
