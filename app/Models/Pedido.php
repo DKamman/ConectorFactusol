@@ -41,7 +41,7 @@ class Pedido extends Model
     {
         $response = Http::withOptions([
             'verify' => false,
-            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey
         ])->get(Pedido::$url . $dateParam);
@@ -50,6 +50,10 @@ class Pedido extends Model
             return 'Unauthorized';
         }
         return $response;
+    }
+
+    public static function getTimestamp() {
+        return Carbon::now();
     }
 
     public static function filter() {

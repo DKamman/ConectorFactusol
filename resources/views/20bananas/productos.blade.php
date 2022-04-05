@@ -1,8 +1,36 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Productos - 20 Bananas</h2>
-            <p class="text-sm">{{ $header['Date'][0] }} - Status: {{ $status }} - Code: {{ $statusCode }}</p>
+        <div class="flex justify-between items-center">
+            <h3 class="font-semibold text-lg text-gray-800 leading-tight">20 Bananas - Clientes</h3>
+            <div class="flex items-center">
+                @if ($header)
+                    <p class="text-sm mr-3">{{ $header->created_at->diffForHumans() }}</p>
+                    <div class="divider bg-black w-px h-3"></div>
+                    <p class="text-sm ml-3 mr-3">Status: 
+                        @if($header->status == "OK")
+                            <strong class="text-green-400">✓</strong>
+                        @elseif($header->status == "Bad Request")
+                            <strong class="text-red-600">{{ $header->status }}</strong>
+                        @else
+                            <strong class="text-red-600">⨯</strong>
+                        @endif
+                    </p>
+                    <div class="divider bg-black w-px h-3"></div>
+                    <p class="text-sm ml-3">
+                        Code: 
+                            @if($statusCode >= 400)
+                                <strong class="text-red-600">{{ $statusCode }}</strong>                            
+                            @elseif($statusCode >= 300)
+                                <strong class="text-yellow-400">{{ $statusCode }}</strong>
+                            @elseif($statusCode >= 200)
+                                <strong class="text-green-400">{{ $statusCode }}</strong>
+                            @else
+                                <strong class="text-blue-600">{{ $statusCode }}</strong>
+                            @endif
+                    </p>
+                @endif
+                <a class="ml-4 px-2 py-1 rounded bg-yellow-400 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="{{ route('20bananas.clientes.get') }}">FETCH</a>
+            </div>
         </div>
     </x-slot>
 

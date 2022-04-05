@@ -33,9 +33,9 @@
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     GET
                                 </div>
-                                <x-jet-dropdown-link href="{{ route('20bananas.clientes') }}">Clientes</x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('20bananas.productos') }}">Productos</x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('20bananas.pedidos') }}">Pedidos</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('20bananas.clientes.index') }}">Clientes</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('20bananas.productos.index') }}">Productos</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('20bananas.pedidos.index') }}">Pedidos</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('20bananas.ofertas') }}">Ofertas</x-jet-dropdown-link>
 
                                 <div class="border-t border-gray-100"></div>

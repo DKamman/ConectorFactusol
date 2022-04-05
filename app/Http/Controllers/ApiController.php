@@ -16,61 +16,7 @@ use App\Models\FactusolOferta;
 use Carbon\Carbon;
 
 class ApiController extends Controller
-{   
-    protected $dateParam = '';
-    protected $apikey = '3741b78df9262be12be380987d275c6f';
-
-    //Gets all clients from the 20Bananas API and renders them in a view
-    public function getVbClientes() {
-        $response = Cliente::get($this->apikey);
-        $clients = $response['records'];
-        $header = $response->headers();
-        $status = $response['response'];
-        $statusCode = $response->getStatusCode();
-
-        return view('20bananas.clientes', [
-            'response' => $clients,
-            'header' => $header,
-            'status' => $status,
-            'statusCode' => $statusCode
-        ]);
-    }
-
-    //Gets all orders from the 20Bananas API and renders them in a view
-    public function getVbPedidos() {
-        $response = Pedido::get($this->apikey, $this->dateParam);
-        $pedidos = $response['records'];
-        $header = $response->headers();
-        $status = $response['response'];
-        $statusCode = $response->getStatusCode();
-
-        $factusolData = Pedido::filter($response);
-
-        return view('20bananas.pedidos', [
-            'response' => $pedidos,
-            'factusol' => $factusolData,
-            'header' => $header,
-            'status' => $status,
-            'statusCode' => $statusCode
-        ]);
-    }
-
-    //Gets all products from the 20Bananas API and renders them in a view
-    public function getVbProductos() {
-        $response = Producto::get($this->apikey);
-        $productos = $response['records'];
-        $header = $response->headers();
-        $status = $response['response'];
-        $statusCode = $response->getStatusCode();
-
-        return view('20bananas.productos', [
-            'response' => $productos,
-            'header' => $header,
-            'status' => $status,
-            'statusCode' => $statusCode
-        ]);
-    }
-
+{
     public function getVbOfertas() {
         $response = Oferta::get($this->apikey);
         $ofertas = $response['records'];

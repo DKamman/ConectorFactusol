@@ -5,15 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class Cliente extends Model
 {
     use HasFactory;
 
+    protected $activo;
     protected $codcliente;
     protected $codcomercial;
     protected $nombrecliente;
     protected $diasreparto;
+
+    protected $attributes = [
+        'activo' => "s",
+        'codcomercial' => '0',
+    ];
 
     public static $url = 'https://api.20bananas.com/v2.3.php/clientes/';
     
@@ -27,7 +34,7 @@ class Cliente extends Model
     {
         $response = Http::withOptions([
             'verify' => false,
-            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey
         ])->get(Cliente::$url);
@@ -37,6 +44,10 @@ class Cliente extends Model
         }
 
         return $response;
+    }
+
+    public static function getTimestamp() {
+        return Carbon::now();
     }
 
     /**
@@ -60,7 +71,7 @@ class Cliente extends Model
 
         Http::withOptions([
             'verify' => false,
-            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey,
             'IMSURE' => 'true'
@@ -68,7 +79,7 @@ class Cliente extends Model
 
         $response = Http::withOptions([
             'verify' => false,
-            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293',
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293',
             'debug' => true
         ])->withHeaders([
             'apikey' => $apikey

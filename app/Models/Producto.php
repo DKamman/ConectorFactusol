@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 
 class Producto extends Model
 {
@@ -40,7 +41,7 @@ class Producto extends Model
     {
         $response = Http::withOptions([
             'verify' => false,
-            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey
         ])->get(Producto::$url);
@@ -50,6 +51,10 @@ class Producto extends Model
         }
 
         return $response;
+    }
+
+    public static function getTimestamp() {
+        return Carbon::now();
     }
 
     /**

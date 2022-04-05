@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +20,15 @@ use App\Http\Controllers\ApiController;
 Route::get('/', function () {
     return view('auth.login');
 });
+//GET View routes 20 Bananas
+Route::get('/20bananas/clientes', [ClienteController::class, 'index'])->middleware(['auth'])->name('20bananas.clientes.index');
+Route::get('/20bananas/productos', [ProductoController::class, 'index'])->middleware(['auth'])->name('20bananas.productos.index');
+Route::get('/20bananas/pedidos', [PedidoController::class, 'index'])->middleware(['auth'])->name('20bananas.pedidos.index');
 
 //GET routes for 20 Bananas
-Route::get('/20bananas/clientes', [ApiController::class, 'getVbClientes'])->middleware(['auth'])->name('20bananas.clientes');
-Route::get('/20bananas/pedidos', [ApiController::class, 'getVbPedidos'])->middleware(['auth'])->name('20bananas.pedidos');
-Route::get('/20bananas/productos', [ApiController::class, 'getVbProductos'])->middleware(['auth'])->name('20bananas.productos');
+Route::get('/20bananas/clientes/get', [ClienteController::class, 'get'])->middleware(['auth'])->name('20bananas.clientes.get');
+Route::get('/20bananas/pedidos/get', [PedidoController::class, 'get'])->middleware(['auth'])->name('20bananas.pedidos.get');
+Route::get('/20bananas/productos/get', [ProductoController::class, 'get'])->middleware(['auth'])->name('20bananas.productos.get');
 Route::get('/20bananas/ofertas', [ApiController::class, 'getVbOfertas'])->middleware(['auth'])->name('20bananas.ofertas');
 
 //GET routes for Factusol

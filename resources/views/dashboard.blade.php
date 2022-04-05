@@ -17,9 +17,9 @@
                                 GET
                             </div>
                             <div class="content flex flex-col">
-                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('20bananas.clientes') }}">Clientes</a>
-                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('20bananas.productos') }}">Productos</a>
-                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('20bananas.pedidos') }}">Pedidos</a>
+                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('20bananas.clientes.index') }}">Clientes</a>
+                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('20bananas.productos.index') }}">Productos</a>
+                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('20bananas.pedidos.index') }}">Pedidos</a>
                             </div>
                             <div class="header py-2 text-sm text-gray-400">
                                 POST
