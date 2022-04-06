@@ -89,20 +89,6 @@ class ApiController extends Controller
         ]);
     }
 
-    //Gets all clients from the Factusol API and posts them to the 20Bananas database
-    public function postVbClientes() {
-        $token = FactusolApi::getBearerToken();
-        $body = FactusolCliente::get($token);
-
-        $response = Cliente::post($this->apikey, $body);
-
-        if ($response == false) {
-            return redirect()->route('20bananas.clientes')->with('error', 'APIkey or body was incorrect');    
-        }
-
-        return redirect()->route('20bananas.clientes')->with('success', 'Clients updated successfully');
-    }
-
     //Gets all Products from the Factusol API and posts them to the 20Bananas database
     public function postVbProductos() {
         $token = FactusolApi::getBearerToken();

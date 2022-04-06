@@ -55,4 +55,21 @@ class ClienteController extends Controller
 
         return redirect()->route('20bananas.clientes.index');
     }
+
+    //Gets all clients from the Factusol API and posts them to the 20Bananas database
+    public function post() {
+        // $token = FactusolApi::getBearerToken();
+        // $body = FactusolCliente::get($token);
+
+        $response = FactusolCliente::all();
+        $header = FactusolClienteHeader::first();
+
+        $response = Cliente::post($this->apikey, $body);
+
+        if ($response == false) {
+            return redirect()->route('20bananas.clientes')->with('error', 'APIkey or body was incorrect');    
+        }
+
+        return redirect()->route('20bananas.clientes')->with('success', 'Clients updated successfully');
+    }
 }
