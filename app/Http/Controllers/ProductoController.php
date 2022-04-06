@@ -35,7 +35,7 @@ class ProductoController extends Controller
             ProductoHeader::truncate();
         }
 
-        $productoHeader = new ClienteHeader;
+        $productoHeader = new ProductoHeader;
         $productoHeader->status = $response['response'];
         $productoHeader->statusCode = $response->getStatusCode();
         $productoHeader->save();
