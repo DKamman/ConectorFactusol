@@ -31,6 +31,10 @@ class FactusolCliente extends Model
             }", 'application/json'
         )->post('https://api.sdelsol.com/admin/CargaTabla');
 
+        return $response;
+    }
+
+    public function filter($response) {
         $array = array();
 
         foreach ($response['resultado'] as $records) {
@@ -48,7 +52,6 @@ class FactusolCliente extends Model
             }
             array_push($array, $client);
         }
-        return array($array, $response);
-        // dd($response);
+        return $array;
     }
 }

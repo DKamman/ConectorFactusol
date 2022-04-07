@@ -36,7 +36,7 @@
                                 GET
                             </div>
                             <div class="content flex flex-col">
-                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('factusol.clientes') }}">Clientes</a>
+                                <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('factusol.clientes.index') }}">Clientes</a>
                                 <a class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" href="{{ route('factusol.productos') }}">Productos</a>
                             </div>
                             <div class="header py-2 text-sm text-gray-400">
