@@ -30,20 +30,10 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    GET
-                                </div>
                                 <x-jet-dropdown-link href="{{ route('20bananas.clientes.index') }}">Clientes</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('20bananas.productos.index') }}">Productos</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('20bananas.pedidos.index') }}">Pedidos</x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('20bananas.ofertas') }}">Ofertas</x-jet-dropdown-link>
-
-                                <div class="border-t border-gray-100"></div>
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    POST
-                                </div>
-                                <x-jet-dropdown-link href="{{ route('20bananas.post.ofertas.view') }}">Ofertas to 20B</x-jet-dropdown-link>
-
+                                <x-jet-dropdown-link href="{{ route('20bananas.ofertas.index') }}">Ofertas</x-jet-dropdown-link>
                             </x-slot>
     
                         </x-jet-dropdown>
@@ -63,20 +53,10 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    GET
-                                </div>
                                 <x-jet-dropdown-link href="{{ route('factusol.clientes.index') }}">Clientes</x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('factusol.productos') }}">Productos</x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('factusol.ofertas') }}">Ofertas</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('factusol.productos.index') }}">Productos</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('factusol.ofertas.index') }}">Ofertas</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="#">Pedidos</x-jet-dropdown-link>
-
-                                <div class="border-t border-gray-100"></div>
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    POST
-                                </div>
-                                <x-jet-dropdown-link href="{{ route('factusol.post.pedidos.view') }}">Pedidos to Factusol</x-jet-dropdown-link>
-
                             </x-slot>
 
                         </x-jet-dropdown>

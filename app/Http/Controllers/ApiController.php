@@ -119,23 +119,6 @@ class ApiController extends Controller
         return redirect()->route('20bananas.ofertas')->with('success', 'Offers updated successfully');
     }
 
-    //Posts all Orders from the 20Bananas API to the Factusol API
-    public function postFactusolPedidos() {
-        $token = FactusolApi::getBearerToken();
-        $response = Pedido::get($this->apikey, $this->dateParam);
-        $filtered = FactusolPedido::filter($response);
-        $body = 
-        `{
-            [
-                "columna"=>"CODPLC",
-                "dato"=>"11111"
-            ]
-        }`;
-
-        $posted = FactusolPedido::post($token, $body);
-        dd($posted);
-    }
-
     //Renders the POST clientes view to 20 Bananas
     public function postVbClientesView() {
         return view('20bananas.post.clientes');

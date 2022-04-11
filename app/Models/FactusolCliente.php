@@ -33,25 +33,4 @@ class FactusolCliente extends Model
 
         return $response;
     }
-
-    public function filter($response) {
-        $array = array();
-
-        foreach ($response['resultado'] as $records) {
-            $client = new Cliente;
-            foreach ($records as $record) {
-                if ($record['columna'] == 'CODCLI')  {
-                    $client->codcliente = $record['dato'];
-                };
-                if ($record['columna'] == 'NOCCLI')  {
-                    $client->nombrecliente = $record['dato'];
-                };
-                if ($record['columna'] == 'AGECLI')  {
-                    $client->codcomercial = $record['dato'];
-                };
-            }
-            array_push($array, $client);
-        }
-        return $array;
-    }
 }

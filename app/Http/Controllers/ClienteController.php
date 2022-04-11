@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use App\Models\ClienteHeader;
+use App\Models\FactusolApi;
+use App\Models\FactusolCliente;
 
 class ClienteController extends Controller
 {
@@ -58,13 +60,12 @@ class ClienteController extends Controller
 
     //Gets all clients from the Factusol API and posts them to the 20Bananas database
     public function post() {
-        // $token = FactusolApi::getBearerToken();
-        // $body = FactusolCliente::get($token);
+        $token = FactusolApi::getBearerToken();
+        $body = FactusolCliente::get($token);
+        $filtered = Cliente::filter($body);
 
-        $response = FactusolCliente::all();
-        $header = FactusolClienteHeader::first();
-
-        $response = Cliente::post($this->apikey, $body);
+        $response = Cliente::post($this->apikey, $filtered);
+        dd($response);
 
         if ($response == false) {
             return redirect()->route('20bananas.clientes')->with('error', 'APIkey or body was incorrect');    

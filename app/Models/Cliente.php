@@ -58,7 +58,6 @@ class Cliente extends Model
      */
     public static function post($apikey, $body)
     {
-
         if (!$apikey) {
             return false;
             exit;
@@ -80,11 +79,30 @@ class Cliente extends Model
         $response = Http::withOptions([
             'verify' => false,
             // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293',
-            'debug' => true
         ])->withHeaders([
             'apikey' => $apikey
         ])->post(Cliente::$url, $body);
 
         return $response;
+    }
+
+    public function filter($response) {
+        $array = array();
+        foreach ($response['resultado'] as $records) {
+            $client = array();
+            foreach ($records as $record) {
+                if ($record['columna'] == 'CODCLI')  {
+                    $client['codcliente'] = $record['dato'];
+                };
+                if ($record['columna'] == 'NOFCLI')  {
+                    $client['nombrecliente'] = $record['dato'];
+                };
+                if ($record['columna'] == 'AGECLI')  {
+                    $client['codcomercial'] = $record['dato'];
+                };
+            }
+            array_push($array, $client);
+        }
+        return $array;
     }
 }

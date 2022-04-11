@@ -50,7 +50,7 @@
                             <p class="text-sm mb-1.5">Are you sure you want to POST the <strong>Clientes</strong> data hereby overwriting the current data?</p>
                         </div>
                         <div class="buttons flex justify-end">
-                            <a class="px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="{{ route('20bananas.post.clientes') }}">POST</a>
+                            <a class="px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="{{ route('20bananas.clientes.post') }}">POST</a>
                         </div>
                     </div>
                 </div>
@@ -64,6 +64,29 @@
                 <th class="p-6 border border-2 border-gray-100">CODCLI</th>
                 <th class="p-6 border border-2 border-gray-100">CCOCLI</th>
                 <th class="p-6 border border-2 border-gray-100">NIFCLI</th>
+                <th class="p-6 border border-2 border-gray-100">NOFCLI</th>
+                <th class="p-6 border border-2 border-gray-100">NOCCLI</th>
+                <th class="p-6 border border-2 border-gray-100">DOMCLI</th>
+                <th class="p-6 border border-2 border-gray-100">POBCLI</th>
+                <th class="p-6 border border-2 border-gray-100">CPOCLI</th>
+                <th class="p-6 border border-2 border-gray-100">PROCLI</th>
+                <th class="p-6 border border-2 border-gray-100">TELCLI</th>
+                <th class="p-6 border border-2 border-gray-100">FAXCLI</th>
+                <th class="p-6 border border-2 border-gray-100">PCOCLI</th>
+                <th class="p-6 border border-2 border-gray-100">AEGCLI</th>
+                <th class="p-6 border border-2 border-gray-100">BANCLI</th>
+                <th class="p-6 border border-2 border-gray-100">ENTCLI</th>
+                <th class="p-6 border border-2 border-gray-100">OFICLI</th>
+                <th class="p-6 border border-2 border-gray-100">DCOCLI</th>
+                <th class="p-6 border border-2 border-gray-100">CUECLI</th>
+                <th class="p-6 border border-2 border-gray-100">FPACLI</th>
+                <th class="p-6 border border-2 border-gray-100">FINCLI</th>
+                <th class="p-6 border border-2 border-gray-100">PPACLI</th>
+                <th class="p-6 border border-2 border-gray-100">TARCLI</th>
+                <th class="p-6 border border-2 border-gray-100">DP1CLI</th>
+                <th class="p-6 border border-2 border-gray-100">DP2CLI</th>
+                <th class="p-6 border border-2 border-gray-100">DP3CLI</th>
+                <th class="p-6 border border-2 border-gray-100">TCLCLI</th>
             </thead>
             <tbody>
                 @foreach ($response as $client)
@@ -71,6 +94,29 @@
                         <td class="p-6 border border-2 border-gray-100">{{ $client->CODCLI }}</td>
                         <td class="p-6 border border-2 border-gray-100">{{ $client->CCOCLI }}</td>
                         <td class="p-6 border border-2 border-gray-100">{{ $client->NIFCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->NOFCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->NOCCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->DOMCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->POBCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->CPOCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->PROCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->TELCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->FAXCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->PCOCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->AEGCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->BANCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->ENTCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->OFICLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->DCOCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->CUECLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->FPACLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->FINCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->PPACLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->TARCLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->DP1CLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->DP2CLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->DP3CLI }}</td>
+                        <td class="p-6 border border-2 border-gray-100">{{ $client->TCLCLI }}</td>
                     </tr>
                 @endforeach
             </tbody>

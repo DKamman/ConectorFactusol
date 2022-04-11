@@ -70,4 +70,21 @@ class PedidoController extends Controller
 
         return redirect()->route('20bananas.pedidos.index');
     }
+
+    //Posts all Orders from the 20Bananas API to the Factusol API
+    public function post() {
+        if (!Pedido::exists()) {
+            return redirect()->route('20bananas.pedidos.index');
+        } else {
+            $pedidos = Pedido::all();
+            $filtered = Pedido::filter($pedidos);
+
+            dd($filtered);
+        }
+        // $token = FactusolApi::getBearerToken();
+        // $response = Pedido::get($this->apikey, $this->dateParam);
+
+        // $posted = FactusolPedido::post($token, $body);
+        // dd($posted);
+    }
 }
