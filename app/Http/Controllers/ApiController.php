@@ -32,45 +32,6 @@ class ApiController extends Controller
         ]);
     }
 
-    //Gets all clients from the Factusol API and renders them in a view
-    public function getFactusolClientes() {
-        $token = FactusolApi::getBearerToken();
-        $response = FactusolCliente::get($token);
-
-        // dd($response[1]);
-
-        $clientes = $response[0];
-        $header = $response[1]->headers();
-        $status = $response[1]['respuesta'];
-        $statusCode = $response[1]->getStatusCode();
-
-        return view('factusol.clientes', [
-            'response' => $clientes,
-            'header' => $header,
-            'status' => $status,
-            'statusCode' => $statusCode
-        ]);
-    }
-
-    //Gets all products from the Factusol API and renders them in a view
-    public function getFactusolProductos() {
-        $token = FactusolApi::getBearerToken();
-        $response = FactusolProducto::get($token);
-        $filtered = FactusolProducto::filter($response, $token);
-
-        $productos = $filtered;
-        $header = $response->headers();
-        $status = $response['respuesta'];
-        $statusCode = $response->getStatusCode();
-
-        return view('factusol.productos', [
-            'response' => $productos,
-            'header' => $header,
-            'status' => $status,
-            'statusCode' => $statusCode
-        ]);
-    }
-
     public function getFactusolOfertas() {
         $token = FactusolApi::getBearerToken();
         $response = FactusolOferta::get($token);

@@ -65,12 +65,11 @@ class ClienteController extends Controller
         $filtered = Cliente::filter($body);
 
         $response = Cliente::post($this->apikey, $filtered);
-        dd($response);
 
         if ($response == false) {
-            return redirect()->route('20bananas.clientes')->with('error', 'APIkey or body was incorrect');    
+            return redirect()->route('20bananas.clientes.index')->with('error', 'APIkey or body was incorrect');    
         }
 
-        return redirect()->route('20bananas.clientes')->with('success', 'Clients updated successfully');
+        return redirect()->route('20bananas.clientes.index')->with('success', 'Clients updated successfully');
     }
 }
