@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\FactusolApi;
+use App\Models\FactusolProducto;
 use App\Models\Producto;
 use App\Models\ProductoHeader;
 
@@ -70,5 +72,21 @@ class ProductoController extends Controller
         }
 
         return redirect()->route('20bananas.productos.index');
+    }
+
+    //Gets all Products from the Factusol API and posts them to the 20Bananas database
+    public function post() {
+        $token = FactusolApi::getBearerToken();
+        $body = FactusolProducto::get($token);
+        $filtered = Producto::filter($body, $token);
+        // dd($filtered);
+        $response = Producto::post($this->apikey, $filtered);
+        // dd($response);
+
+        if ($response == false) {
+            return redirect()->route('20bananas.productos.index')->with('error', 'APIkey or body was incorrect');    
+        }
+
+        return redirect()->route('20bananas.productos.index')->with('success', 'Products updated successfully');
     }
 }

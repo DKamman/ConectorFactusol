@@ -55,8 +55,8 @@
                             <x-slot name="content">
                                 <x-jet-dropdown-link href="{{ route('factusol.clientes.index') }}">Clientes</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('factusol.productos.index') }}">Productos</x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('factusol.pedidos.index') }}">Pedidos</x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('factusol.ofertas.index') }}">Ofertas</x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="#">Pedidos</x-jet-dropdown-link>
                             </x-slot>
 
                         </x-jet-dropdown>

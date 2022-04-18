@@ -50,7 +50,7 @@
                             <p class="text-sm mb-1.5">Are you sure you want to POST the <strong>Productos</strong> data hereby overwriting the current data?</p>
                         </div>
                         <div class="buttons flex justify-end">
-                            <a class="px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="{{ route('20bananas.post.productos') }}">POST</a>
+                            <a class="px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="{{ route('20bananas.productos.post') }}">POST</a>
                         </div>
                     </div>
                 </div>
