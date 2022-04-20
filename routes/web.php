@@ -30,6 +30,9 @@ Route::get('/20bananas/productos', [ProductoController::class, 'index'])->middle
 Route::get('/20bananas/pedidos', [PedidoController::class, 'index'])->middleware(['auth'])->name('20bananas.pedidos.index');
 Route::get('/20bananas/ofertas', [OfertaController::class, 'index'])->middleware(['auth'])->name('20bananas.ofertas.index');
 
+//GET Debug Routes for 20 Bananas
+Route::get('/20bananas/pedidos/getdebug', [PedidoController::class, 'getDebug'])->middleware(['auth'])->name('20bananas.pedidos.getdebug');
+
 //GET routes for 20 Bananas
 Route::get('/20bananas/clientes/get', [ClienteController::class, 'get'])->middleware(['auth'])->name('20bananas.clientes.get');
 Route::get('/20bananas/pedidos/get', [PedidoController::class, 'get'])->middleware(['auth'])->name('20bananas.pedidos.get');

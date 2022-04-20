@@ -29,7 +29,7 @@
                             @endif
                     </p>
                 @endif
-                <form class="flex items-center ml-5" action="{{ route('20bananas.pedidos.get') }}" method="GET">
+                <form class="flex items-center ml-5" action="{{ route('20bananas.pedidos.getdebug') }}" method="GET">
                     <label class="text-sm" for="date">Date of Pedidos:</label>
                     <input class="text-xs appearance-none border rounded ml-3 py-1.5 px-3 text-gray-700 leading-tight" type="date" name="date">
                     <button type="submit" class="ml-4 px-2 py-1 rounded bg-yellow-400 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300">FETCH</button>

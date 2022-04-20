@@ -30,6 +30,8 @@ class Pedido extends Model
 
     public static $url = 'https://api.20bananas.com/v2.3.php/pedidos/';
 
+
+
     /**
     * Gets all order data from 20Banana's API
     * 
@@ -37,7 +39,30 @@ class Pedido extends Model
     * @param string    $dateParam contains the order date in yyyy-mm-dd order
     * @return array   $response['records'] order data
     */
-    public static function get($apikey, $dateParam)
+    public static function get($apikey)
+    {
+        $integrado0 = 'integratedERP0';
+        $response = Http::withOptions([
+            'verify' => false,
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+        ])->withHeaders([
+            'apikey' => $apikey
+        ])->get(Pedido::$url . $integrado0);
+
+        if ($response['response'] == 'ERROR') {
+            return 'Unauthorized';
+        }
+        return $response;
+    }
+
+    /**
+    * Gets all order data from 20Banana's API
+    * 
+    * @param string    $apikey contains the apikey for authenticating the API
+    * @param string    $dateParam contains the order date in yyyy-mm-dd order
+    * @return array   $response['records'] order data
+    */
+    public static function getDebug($apikey, $dateParam)
     {
         $response = Http::withOptions([
             'verify' => false,
@@ -99,8 +124,20 @@ class Pedido extends Model
         return $orderArray;
     }
 
-    public static function post() 
+    public static function put($apikey, $body) 
     {
-        //
+        $response = Http::withOptions([
+            'verify' => false,
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+        ])->withHeaders([
+            'apikey' => $apikey
+        ])->put(Pedido::$url, [
+            $body
+        ]);
+
+        if ($response['response'] == 'ERROR') {
+            return 'Unauthorized';
+        }
+        return $response;
     }
 }

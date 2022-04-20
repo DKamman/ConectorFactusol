@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FactusolApi;
 use App\Models\FactusolPedido;
+use App\Models\Pedido;
 use App\Models\FactusolPedidoHeader;
 
 class FactusolPedidoController extends Controller
 {
+    protected $apikey = '3741b78df9262be12be380987d275c6f';
+
     public function index() {
         $pedidos = FactusolPedido::all();
         $header = FactusolPedidoHeader::first();
@@ -76,6 +79,24 @@ class FactusolPedidoController extends Controller
     }
 
     public function post() {
-        //
+        $token = FactusolApi::getBearerToken();
+        $body = Pedido::get($this->apikey)['records'];
+        $filtered = FactusolPedido::filter($body);
+        // dd($filtered);
+
+        foreach ($filtered as $pedido) {
+            $response = FactusolPedido::post($token, $pedido);
+            // dd($response);
+        }
+
+        foreach ($body as $pedido) {
+            $data = array();
+            $data['idpedido'] = $pedido['idpedido'];
+            $data['integradoERP10'] = '1';
+
+            $response = Pedido::put($this->apikey, $data);
+            // dd($response);
+        }
+        return redirect()->route('factusol.pedidos.index');
     }
 }
