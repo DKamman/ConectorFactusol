@@ -17,21 +17,6 @@ use Carbon\Carbon;
 
 class ApiController extends Controller
 {
-    public function getVbOfertas() {
-        $response = Oferta::get($this->apikey);
-        $ofertas = $response['records'];
-        $header = $response->headers();
-        $status = $response['response'];
-        $statusCode = $response->getStatusCode();
-
-        return view('20bananas.ofertas', [
-            'response' => $ofertas,
-            'header' => $header,
-            'status' => $status,
-            'statusCode' => $statusCode
-        ]);
-    }
-
     public function getFactusolOfertas() {
         $token = FactusolApi::getBearerToken();
         $response = FactusolOferta::get($token);
@@ -63,24 +48,5 @@ class ApiController extends Controller
         }
 
         return redirect()->route('20bananas.ofertas')->with('success', 'Offers updated successfully');
-    }
-
-    //Renders the POST clientes view to 20 Bananas
-    public function postVbClientesView() {
-        return view('20bananas.post.clientes');
-    }
-
-    //Renders the POST productos view to 20 Bananas
-    public function postVbProductosView() {
-        return view('20bananas.post.productos');
-    }
-
-    //Renderes the POST pedidos view to Factusol
-    public function postFactusolPedidosView() {
-        return view('factusol.post.pedidos');
-    }
-
-    public function postVbOfertasView() {
-        return view('20bananas.post.ofertas');
     }
 }

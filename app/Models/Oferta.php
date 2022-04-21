@@ -20,7 +20,7 @@ class Oferta extends Model
 
         $response = Http::withOptions([
             'verify' => false,
-            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey
         ])->get(Oferta::$url);
@@ -47,7 +47,7 @@ class Oferta extends Model
 
         Http::withOptions([
             'verify' => false,
-            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey,
             'IMSURE' => 'true'
@@ -55,7 +55,7 @@ class Oferta extends Model
 
         $response = Http::withOptions([
             'verify' => false,
-            'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
+            // 'proxy' => 'http://izdqtgr5xgbe5z:2h4gpv9haieb5u881mjjf1bio9@eu-west-static-05.quotaguard.com:9293'
         ])->withHeaders([
             'apikey' => $apikey
         ])->post(Oferta::$url, $body);
