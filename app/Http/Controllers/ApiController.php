@@ -17,24 +17,6 @@ use Carbon\Carbon;
 
 class ApiController extends Controller
 {
-    public function getFactusolOfertas() {
-        $token = FactusolApi::getBearerToken();
-        $response = FactusolOferta::get($token);
-        $filtered = FactusolOferta::filter($response, $token);
-
-        $productos = $filtered;
-        $header = $response->headers();
-        $status = $response['respuesta'];
-        $statusCode = $response->getStatusCode();
-
-        return view('factusol.ofertas', [
-            'response' => $filtered,
-            'header' => $header,
-            'status' => $status,
-            'statusCode' => $statusCode
-        ]);
-    }
-
     public function postVbOfertas() {
         $token = FactusolApi::getBearerToken();
         $body = FactusolOferta::get($token);
