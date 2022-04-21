@@ -102,9 +102,6 @@ class Producto extends Model
             foreach ($records as $record) {
                 $familiaCodigo; 
                 $subfamiliaCodigo;
-                // if ($record['columna'] == 'CODART')  {
-                //     $product['referencia'] = $record['dato'];
-                // };
                 if ($record['columna'] == 'CCOART')  {
                     $product['referencia'] = $record['dato'];
                 }
@@ -155,39 +152,17 @@ class Producto extends Model
                 if ($record['columna'] == 'PCOART')  {
                     $product['precio'] = $record['dato'];
                 }
-
-                if ($record['columna'] == 'UPPART')  {
-                    $product['unidad'] = $record['dato'];
-                }
-
                 if ($record['columna'] == 'IMGART')  {
                     $product['foto'] = $record['dato'];
                 }
-                // $product->unidadbulto = '';
-                // $product->unidadbulto2 = '';
-                // $product->unidadesxbulto = '';
-                // $product->unidadesxbulto2 = '';
-
-                //  $referencia;
-                //  $nombre;
-                //  $activo;
-                //  $subfamilia;
-                //  $familia;
-                //  $precio;
-                //  $unidad;
-                //  $unidadesxbulto;
-                //  $unidadbulto;
-                //  $unidadesxbulto2;
-                //  $unidadbulto2;
-                //  $vendounidad;
-                //  $vendobulto;
-                //  $vendobulto2;
-                //  $descripcion;
-                //  $tags;
-                //  $foto;
-                
+                $product['unidad'] = 'unidad';
+                $product['unidadbulto'] = "";
+                $product['unidadbulto2'] = "";
+                $product['unidadesxbulto'] = "";
+                $product['unidadesxbulto2'] = "";
+                $product['vendobulto'] = "0";
+                $product['vendobulto2'] = "0";                
             }
-            // dd($product);
             array_push($array, $product);
         }
         return $array;

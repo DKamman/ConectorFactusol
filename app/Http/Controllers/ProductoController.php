@@ -79,9 +79,7 @@ class ProductoController extends Controller
         $token = FactusolApi::getBearerToken();
         $body = FactusolProducto::get($token);
         $filtered = Producto::filter($body, $token);
-        // dd($filtered);
         $response = Producto::post($this->apikey, $filtered);
-        // dd($response);
 
         if ($response == false) {
             return redirect()->route('20bananas.productos.index')->with('error', 'APIkey or body was incorrect');    
