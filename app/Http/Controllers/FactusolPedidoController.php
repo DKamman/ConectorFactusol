@@ -78,15 +78,13 @@ class FactusolPedidoController extends Controller
         return redirect()->route('factusol.pedidos.index');
     }
 
-    public function post() {
+    public function post($credential) {
         $token = FactusolApi::getBearerToken();
-        $body = Pedido::get($this->apikey)['records'];
+        $body = Pedido::get($credential->apikey)['records'];
         $filtered = FactusolPedido::filter($body);
-        // dd($filtered);
 
         foreach ($filtered as $pedido) {
             $response = FactusolPedido::post($token, $pedido);
-            // dd($response);
         }
 
         foreach ($body as $pedido) {
@@ -94,8 +92,7 @@ class FactusolPedidoController extends Controller
             $data['idpedido'] = $pedido['idpedido'];
             $data['integradoERP10'] = '1';
 
-            $response = Pedido::put($this->apikey, $data);
-            // dd($response);
+            $response = Pedido::put($credential->apikey, $data);
         }
         return redirect()->route('factusol.pedidos.index');
     }
