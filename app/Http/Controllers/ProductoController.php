@@ -75,11 +75,11 @@ class ProductoController extends Controller
     }
 
     //Gets all Products from the Factusol API and posts them to the 20Bananas database
-    public function post() {
+    public function post($credential) {
         $token = FactusolApi::getBearerToken();
         $body = FactusolProducto::get($token);
         $filtered = Producto::filter($body, $token);
-        $response = Producto::post($this->apikey, $filtered);
+        $response = Producto::post($credential->apikey, $filtered);
 
         if ($response == false) {
             return redirect()->route('20bananas.productos.index')->with('error', 'APIkey or body was incorrect');    
