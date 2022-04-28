@@ -7,6 +7,8 @@ use App\Models\FactusolApi;
 use App\Models\FactusolProducto;
 use App\Models\Producto;
 use App\Models\ProductoHeader;
+use App\Models\ClienteCredential;
+
 
 class ProductoController extends Controller
 {
@@ -16,6 +18,9 @@ class ProductoController extends Controller
     public function index() {
         $productos = Producto::all();
         $header = ProductoHeader::first();
+
+        $credentials = ClienteCredential::all();
+
         if ($header != null) {
             $statusCode = intval($header->statusCode);
         } else {
@@ -25,13 +30,18 @@ class ProductoController extends Controller
         return view('20bananas.productos', [
             'response' => $productos,
             'header' => $header,
-            'statusCode' => $statusCode
+            'statusCode' => $statusCode,
+            'credentials' => $credentials
         ]);
     }
 
     //Gets all Products from the 20Bananas API and renders them in a view
-    public function get() {
-        $response = Producto::get($this->apikey);
+    public function get(Request $request) {
+        $response = Producto::get($request->apikey);
+
+        if ($response == 'Unauthorized') {
+            return redirect()->route('20bananas.clientes.index')->with('error', 'You are Unauthorized');
+        }
 
         if (ProductoHeader::exists()) {
             ProductoHeader::truncate();
@@ -75,7 +85,14 @@ class ProductoController extends Controller
     }
 
     //Gets all Products from the Factusol API and posts them to the 20Bananas database
-    public function post($credential) {
+    public function post($credential = null) {
+
+        if (is_null($credential)) {
+            $credential = request();
+        } else {
+            $credential = $credential;
+        }
+
         $token = FactusolApi::getBearerToken();
         $body = FactusolProducto::get($token);
         $filtered = Producto::filter($body, $token);
