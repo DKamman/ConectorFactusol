@@ -42,6 +42,9 @@ class Cliente extends Model
         if ($response['response'] == 'ERROR') {
             return 'Unauthorized';
         }
+        if (!$response) {
+            return 'No data found';
+        }
 
         return $response;
     }

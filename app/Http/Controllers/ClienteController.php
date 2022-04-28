@@ -7,6 +7,7 @@ use App\Models\Cliente;
 use App\Models\ClienteHeader;
 use App\Models\FactusolApi;
 use App\Models\FactusolCliente;
+use App\Models\ClienteCredential;
 
 class ClienteController extends Controller
 {
@@ -15,6 +16,9 @@ class ClienteController extends Controller
     public function index() {
         $clients = Cliente::all();
         $header = ClienteHeader::first();
+
+        $credentials = ClienteCredential::all();
+
         if ($header != null) {
             $statusCode = intval($header->statusCode);
         } else {
@@ -24,13 +28,18 @@ class ClienteController extends Controller
         return view('20bananas.clientes', [
             'response' => $clients,
             'header' => $header,
-            'statusCode' => $statusCode
+            'statusCode' => $statusCode,
+            'credentials' => $credentials
         ]);   
     }
 
     //Gets all clients from the 20Bananas API and renders them in a view
-    public function get() {
-        $response = Cliente::get($this->apikey);
+    public function get(Request $request) {
+        $response = Cliente::get($request->apikey);
+
+        if ($response == 'Unauthorized') {
+            return redirect()->route('20bananas.clientes.index')->with('error', 'You are Unauthorized');
+        }
         
         if (ClienteHeader::exists()) {
             ClienteHeader::truncate();
@@ -59,7 +68,14 @@ class ClienteController extends Controller
     }
 
     //Gets all clients from the Factusol API and posts them to the 20Bananas database
-    public function post($credential) {
+    public function post($credential = null) {
+        
+        if (is_null($credential)) {
+            $credential = request();
+        } else {
+            $credential = $credential;
+        }
+
         $token = FactusolApi::getBearerToken();
         $body = FactusolCliente::get($token);
         $filtered = Cliente::filter($body);

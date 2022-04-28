@@ -17,6 +17,10 @@ class CreateClienteCredentials extends Migration
             $table->id();
             $table->string('name');
             $table->string('apikey');
+            $table->string('codigoFabricante');
+            $table->string('codigoCliente');
+            $table->string('baseDatosCliente');
+            $table->string('password');
             $table->timestamps();
         });
     }
