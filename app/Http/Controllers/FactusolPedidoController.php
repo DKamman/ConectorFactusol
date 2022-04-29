@@ -7,6 +7,7 @@ use App\Models\FactusolApi;
 use App\Models\FactusolPedido;
 use App\Models\Pedido;
 use App\Models\FactusolPedidoHeader;
+use App\Models\ClienteCredential;
 
 class FactusolPedidoController extends Controller
 {
@@ -21,15 +22,21 @@ class FactusolPedidoController extends Controller
             $statusCode = null;
         }
 
+        $credentials = ClienteCredential::all();
+
         return view('factusol.pedidos', [
             'response' => $pedidos,
             'header' => $header,
-            'statusCode' => $statusCode
+            'statusCode' => $statusCode,
+            'credentials' => $credentials
         ]);
     }
 
-    public function get() {
-        $token = FactusolApi::getBearerToken();
+    public function get(Request $request) {
+        $name = $request->credential;
+        $credential = ClienteCredential::where('name', $name)->first();
+
+        $token = FactusolApi::getBearerToken($credential);
         $response = FactusolPedido::get($token);
 
         if (FactusolPedidoHeader::exists()) {
@@ -78,8 +85,16 @@ class FactusolPedidoController extends Controller
         return redirect()->route('factusol.pedidos.index');
     }
 
-    public function post($credential) {
-        $token = FactusolApi::getBearerToken();
+    public function post($credential = null) {
+        
+        if (is_null($credential)) {
+            $name = request()->credential;         
+            $credential = ClienteCredential::where('name', $name)->first();
+        } else {
+            $credential = $credential;
+        }
+
+        $token = FactusolApi::getBearerToken($credential);
         $body = Pedido::get($credential->apikey)['records'];
         $filtered = FactusolPedido::filter($body);
 
@@ -94,6 +109,6 @@ class FactusolPedidoController extends Controller
 
             $response = Pedido::put($credential->apikey, $data);
         }
-        return redirect()->route('factusol.pedidos.index');
+        return redirect()->route('factusol.pedidos.index')->with('success', 'Pedidos have been updated');
     }
 }

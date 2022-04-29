@@ -15,18 +15,15 @@ class FactusolApi extends Model
      * 
      * @return string $response['resultado'] returns the bearer token
      */
-    public static function getBearerToken() 
+    public static function getBearerToken($credential)
     {
+        $data = '{"codigoFabricante":"'.$credential->codigoFabricante.'","codigoCliente":"'.$credential->codigoCliente.'","baseDatosCliente":"'.$credential->baseDatosCliente.'","password":"'.$credential->password.'"}';
+        
         $response = Http::withOptions([
             'verify' => false,
         ])->withBody(
-            "{
-                'codigoFabricante':'305',
-                'codigoCliente':'99973',
-                'baseDatosCliente':'FS305',
-                'password':'RExVUDczN2NkanZP'
-                
-            }", 'application/json')->post('https://api.sdelsol.com/login/Autenticar');
+           $data, 'application/json'
+        )->post('https://api.sdelsol.com/login/Autenticar');
 
         return $response['resultado'];
     }

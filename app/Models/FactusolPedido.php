@@ -13,6 +13,8 @@ class FactusolPedido extends Model
     public static $url = "https://api.sdelsol.com/admin/EscribirRegistro";
 
     public function get($token) {
+        $data = '{"ejercicio":"2022","tabla":"F_PCL","filtro":"CODPCL > 0"}';
+
         $response = Http::withOptions([
             'verify' => false,
         ])->withToken($token)

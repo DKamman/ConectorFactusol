@@ -29,8 +29,34 @@
                             @endif
                     </p>
                 @endif
-                <a class="ml-4 px-2 py-1 rounded bg-yellow-400 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="{{ route('factusol.pedidos.get')}}">FETCH</a>
-                <a class="ml-2 px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="#myModal">POST</a>
+
+                <div class="flex">
+                    <div class="ml-6">
+                        <form action="{{ route('factusol.pedidos.get') }}" method="GET">
+                            <div class="flex flex-col items-center">
+                                <select class="mb-2 text-xs rounded" name="credential">
+                                    @foreach ($credentials as $credential)
+                                        <option value="{{ $credential->name }}">{{ $credential->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="w-full text-center px-2 py-1 rounded bg-yellow-400 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300">FETCH</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="ml-3">
+                        <form id="post_form" action="{{ route('factusol.pedidos.post') }}" method="GET">
+                            <div class="flex flex-col items-center">
+                                <select class="mb-2 text-xs rounded" name="credential">
+                                    @foreach ($credentials as $credential)
+                                        <option value="{{ $credential->name }}">{{ $credential->name }}</option>
+                                    @endforeach
+                                </select>
+                                <a class="w-full text-center px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="#myModal">POST</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
                 {{-- Modal --}}
                 <div id="myModal" class="my-modal">
@@ -50,7 +76,7 @@
                             <p class="text-sm mb-1.5">Are you sure you want to POST the <strong>Pedidos</strong> data?</p>
                         </div>
                         <div class="buttons flex justify-end">
-                            <a class="px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="{{ route('factusol.pedidos.post') }}">POST</a>
+                            <button form="post_form" class="px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300">POST</button>
                         </div>
                     </div>
                 </div>
