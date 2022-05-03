@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\FactusolApi;
 use App\Models\FactusolCliente;
 use App\Models\FactusolClienteHeader;
+use App\Models\ClienteCredential;
 
 class FactusolClienteController extends Controller
 {
@@ -18,16 +19,22 @@ class FactusolClienteController extends Controller
             $statusCode = null;
         }
 
+        $credentials = ClienteCredential::all();
+
         return view('factusol.clientes', [
             'response' => $clientes,
             'header' => $header,
-            'statusCode' => $statusCode
+            'statusCode' => $statusCode,
+            'credentials' => $credentials
         ]);
     }
 
     //Gets all clients from the Factusol API and renders them in a view
-    public function get() {
-        $token = FactusolApi::getBearerToken();
+    public function get(Request $request) {
+        $name = $request->credential;
+        $credential = ClienteCredential::where('name', $name)->first();
+
+        $token = FactusolApi::getBearerToken($credential);
         $response = FactusolCliente::get($token);
 
         if (FactusolClienteHeader::exists()) {

@@ -7,6 +7,7 @@ use App\Models\FactusolApi;
 use App\Models\FactusolProducto;
 use App\Models\FactusolProductoHeader;
 use App\Models\Producto;
+use App\Models\ClienteCredential;
 
 class FactusolProductoController extends Controller
 {
@@ -19,16 +20,22 @@ class FactusolProductoController extends Controller
             $statusCode = null;
         }
 
+        $credentials = ClienteCredential::all();
+
         return view('factusol.productos', [
             'response' => $productos,
             'header' => $header,
-            'statusCode' => $statusCode
+            'statusCode' => $statusCode,
+            'credentials' => $credentials
         ]);
     }
 
     //Gets all products from the Factusol API and renders them in a view
-    public function get() {
-        $token = FactusolApi::getBearerToken();
+    public function get(Request $request) {
+        $name = $request->credential;
+        $credential = ClienteCredential::where('name', $name)->first();
+
+        $token = FactusolApi::getBearerToken($credential);
         $response = FactusolProducto::get($token);
 
         if (FactusolProductoHeader::exists()) {

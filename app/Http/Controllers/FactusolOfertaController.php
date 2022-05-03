@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\FactusolApi;
 use App\Models\FactusolOferta;
 use App\Models\FactusolOfertaHeader;
+use App\Models\ClienteCredential;
 
 class FactusolOfertaController extends Controller
 {
@@ -18,17 +19,22 @@ class FactusolOfertaController extends Controller
             $statusCode = null;
         }
 
+        $credentials = ClienteCredential::all();
+
         return view('factusol.ofertas', [
             'response' => $ofertas,
             'header' => $header,
-            'statusCode' => $statusCode
+            'statusCode' => $statusCode,
+            'credentials' => $credentials
         ]);
     }
 
-    public function get() {
-        $token = FactusolApi::getBearerToken();
+    public function get(Request $request) {
+        $name = $request->credential;
+        $credential = ClienteCredential::where('name', $name)->first();
+
+        $token = FactusolApi::getBearerToken($credential);
         $response = FactusolOferta::get($token);
-        // dd($response['resultado']);
 
         if (FactusolOfertaHeader::exists()) {
             FactusolOfertaHeader::truncate();

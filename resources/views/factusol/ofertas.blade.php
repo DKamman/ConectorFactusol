@@ -1,4 +1,5 @@
 <x-app-layout>
+
     <x-slot name="header">
         <div class="flex justify-between items-center">
             <h3 class="font-semibold text-lg text-gray-800 leading-tight">Factusol - Ofertas</h3>
@@ -29,10 +30,25 @@
                             @endif
                     </p>
                 @endif
-                <a class="ml-4 px-2 py-1 rounded bg-yellow-400 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="{{ route('factusol.ofertas.get') }}">FETCH</a>
+
+                <div class="flex">
+                    <div class="ml-6">
+                        <form action="{{ route('factusol.ofertas.get') }}" method="GET">
+                            <div class="flex flex-col items-center">
+                                <select class="mb-2 text-xs rounded" name="credential">
+                                    @foreach ($credentials as $credential)
+                                        <option value="{{ $credential->name }}">{{ $credential->name }}</option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="w-full text-center px-2 py-1 rounded bg-yellow-400 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300">GET</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </x-slot>
+
     <div class="overflow-scroll my-4 mx-auto" style="width:95vw; height:75vh;">
         <table class="text-xs w-full">
             <thead class="bg-gray-200">
