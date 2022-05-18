@@ -88,12 +88,12 @@ class ProductoController extends Controller
     public function post($credential = null) {
 
         if (is_null($credential)) {
-            $credential = request();
+            $credential = ClienteCredential::where('name', request()->credential)->first();
         } else {
             $credential = $credential;
         }
 
-        $token = FactusolApi::getBearerToken();
+        $token = FactusolApi::getBearerToken($credential);
         $body = FactusolProducto::get($token);
         $filtered = Producto::filter($body, $token);
         $response = Producto::post($credential->apikey, $filtered);
