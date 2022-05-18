@@ -71,12 +71,12 @@ class ClienteController extends Controller
     public function post($credential = null) {
         
         if (is_null($credential)) {
-            $credential = request();
+            $credential = ClienteCredential::where('name', request()->credential)->first();
         } else {
             $credential = $credential;
         }
 
-        $token = FactusolApi::getBearerToken();
+        $token = FactusolApi::getBearerToken($credential);
         $body = FactusolCliente::get($token);
         $filtered = Cliente::filter($body);
 

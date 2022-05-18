@@ -47,9 +47,9 @@
                     <div class="ml-3">
                         <form id="post_form" action="{{ route('20bananas.clientes.post') }}" method="GET">
                             <div class="flex flex-col items-center">
-                                <select class="mb-2 text-xs rounded" name="apikey">
+                                <select class="mb-2 text-xs rounded" name="credential">
                                     @foreach ($credentials as $credential)
-                                        <option value="{{ $credential->apikey }}">{{ $credential->name }}</option>
+                                        <option value="{{ $credential->name }}">{{ $credential->name }}</option>
                                     @endforeach
                                 </select>
                                 <a class="w-full text-center px-2 py-1 rounded bg-red-600 text-white font-semibold hover:drop-shadow hover:ease-in-out hover:duration-300" href="#myModal">POST</a>
