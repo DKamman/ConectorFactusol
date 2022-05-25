@@ -67,7 +67,11 @@ class ClienteController extends Controller
         return redirect()->route('20bananas.clientes.index');
     }
 
-    //Gets all clients from the Factusol API and posts them to the 20Bananas database
+    /** 
+     *  Gets all clients from the Factusol API and posts them to the 20Bananas database
+     *  @param $credential containing all client credential information
+     *  @return view with success or error message
+     */
     public function post($credential = null) {
         
         if (is_null($credential)) {
