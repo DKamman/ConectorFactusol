@@ -30,14 +30,12 @@ class Pedido extends Model
 
     public static $url = 'https://api.20bananas.com/v2.3.php/pedidos/';
 
-
-
     /**
     * Gets all order data from 20Banana's API
     * 
     * @param string    $apikey contains the apikey for authenticating the API
     * @param string    $dateParam contains the order date in yyyy-mm-dd order
-    * @return array   $response['records'] order data
+    * @return array    $response['records'] order data
     */
     public static function get($apikey)
     {
@@ -54,7 +52,7 @@ class Pedido extends Model
         }
         return $response;
     }
-
+    
     /**
     * Gets all order data from 20Banana's API
     * 
@@ -120,7 +118,6 @@ class Pedido extends Model
             $i = 0;
             $order = array();
         }
-
         return $orderArray;
     }
 

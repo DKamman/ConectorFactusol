@@ -8,6 +8,8 @@ use App\Models\FactusolProducto;
 use App\Models\Producto;
 use App\Models\ProductoHeader;
 use App\Models\ClienteCredential;
+use Illuminate\Support\Facades\Http;
+
 
 
 class ProductoController extends Controller

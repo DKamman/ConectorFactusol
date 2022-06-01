@@ -95,52 +95,76 @@ class Producto extends Model
 
     public static function filter($response, $token) {
 
+        // echo gettype($response['resultado']);
+        
         $array = array();
 
         foreach ($response['resultado'] as $records) {
             $product = array();
+            $famcode = array();
             foreach ($records as $record) {
-                $familiaCodigo; 
-                $subfamiliaCodigo;
-                if ($record['columna'] == 'CCOART')  {
+                if ($record['columna'] == 'CODART')  {
                     $product['referencia'] = $record['dato'];
                 }
                 if ($record['columna'] == 'DESART')  {
                     $product['nombre'] = $record['dato'];
                 }
-                if ($record['columna'] == 'FAMART')  {       
-                    $response = Http::withOptions([
-                        'verify' => false,
-                    ])->withToken($token)
-                    ->withBody(
-                        '{
-                            "ejercicio":"2022",
-                            "tabla":"F_FAM",
-                            "filtro":"CODFAM = \''.$record["dato"].'\'"
-                        }', 'application/json'
-                    )->post(FactusolProducto::$url)['resultado'];
+                if ($record['columna'] == 'FAMART')  {
+                    if ($record['dato'] == "") {
+                        $product['subfamilia'] = "";
+                        $product['familia'] = "";                        
+                    }else {
+                        $response = Http::withOptions([
+                            'verify' => false,
+                        ])->withToken($token)
+                        ->withBody(
+                            '{
+                                "ejercicio":"2022",
+                                "tabla":"F_FAM",
+                                "filtro":"CODFAM = \''.$record["dato"].'\'"
+                            }', 'application/json'
+                        )->post(FactusolProducto::$url)['resultado'];
 
-                    foreach ($response as $records) {
-                        foreach ($records as $record) {
-                            if ($record['columna'] == 'DESFAM') {
-                                $product['subfamilia'] = $record['dato'];
-                            }
-                            if ($record['columna'] == 'SECFAM') {                               
-                                $response = Http::withOptions([
-                                    'verify' => false,
-                                ])->withToken($token)
-                                ->withBody(
-                                    '{
-                                        "ejercicio":"2022",
-                                        "tabla":"F_SEC",
-                                        "filtro":"CODSEC = \''.$record["dato"].'\'"
-                                    }', 'application/json'
-                                )->post(FactusolProducto::$url)['resultado'];
-
-                                foreach ($response as $records) {
-                                    foreach ($records as $record) {
-                                        if ($record['columna'] == 'DESSEC') {
-                                            $product['familia'] = $record['dato'];
+                        if (gettype($response) != "array") {
+                            $product['subfamilia'] = "";
+                            $product['familia'] = ""; 
+                        } else {
+                            foreach ($response as $records) {      
+                                foreach ($records as $record) {
+                                    if ($record['columna'] == 'DESFAM') {
+                                        if ($record['dato'] == "") {
+                                            $product['subfamilia'] = "";
+                                        } else {
+                                            $product['subfamilia'] = $record['dato'];
+                                        }
+                                    }
+                                    if ($record['columna'] == 'SECFAM') {
+                                        // echo $record['dato']; 
+                                        if ($record['dato'] == "") {
+                                            $product['familia'] = "";
+                                        }else {
+                                            $response = Http::withOptions([
+                                                'verify' => false,
+                                            ])->withToken($token)
+                                            ->withBody(
+                                                '{
+                                                    "ejercicio":"2022",
+                                                    "tabla":"F_SEC",
+                                                    "filtro":"CODSEC = \''.$record["dato"].'\'"
+                                                }', 'application/json'
+                                            )->post(FactusolProducto::$url)['resultado'];
+            
+                                            foreach ($response as $records) {
+                                                foreach ($records as $record) {
+                                                    if ($record['columna'] == 'DESSEC') {
+                                                        if ($record['dato'] == "") {
+                                                            $product['familia'] = "";
+                                                        } else {
+                                                            $product['familia'] = $record['dato'];
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }

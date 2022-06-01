@@ -96,6 +96,7 @@ class FactusolPedidoController extends Controller
 
         $token = FactusolApi::getBearerToken($credential);
         $body = Pedido::get($credential->apikey)['records'];
+        dd($body);
         $filtered = FactusolPedido::filter($body);
 
         foreach ($filtered as $pedido) {
