@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\FactusolApi;
 use App\Models\FactusolPedido;
+use App\Models\FactusolProducto;
 use App\Models\Pedido;
 use App\Models\FactusolPedidoHeader;
 use App\Models\ClienteCredential;
@@ -96,9 +97,10 @@ class FactusolPedidoController extends Controller
 
         $token = FactusolApi::getBearerToken($credential);
         $body = Pedido::get($credential->apikey);
-        // dd($body[0]['productos']);
+        // dd($body);
         $filtered = FactusolPedido::filter($body);
-        // dd($filtered);
+        dd($filtered);
+        $productsFiltered = FactusolProducto::filter($body);
 
         foreach ($filtered as $pedido) {
             $response = FactusolPedido::post($token, $pedido);
