@@ -50,7 +50,8 @@ class Pedido extends Model
         if ($response['response'] == 'ERROR') {
             return 'Unauthorized';
         }
-        return $response;
+        // dd($response['records']);
+        return $response['records'];
     }
     
     /**
