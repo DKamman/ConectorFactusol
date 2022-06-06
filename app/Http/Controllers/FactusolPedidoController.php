@@ -97,10 +97,20 @@ class FactusolPedidoController extends Controller
 
         $token = FactusolApi::getBearerToken($credential);
         $body = Pedido::get($credential->apikey);
-        // dd($body);
         $filtered = FactusolPedido::filter($body);
-        dd($filtered);
-        $productsFiltered = FactusolProducto::filter($body);
+        // dd($filtered);
+        $productos = array();
+
+        foreach ($filtered as $pedido) {
+            foreach ($pedido['productos'] as $producto) {
+                array_push($productos, $producto);
+            }  
+        }
+
+        // dd($productos);
+
+        $response = FactusolPedido::postPedidoProductos($token, $productos);
+
 
         foreach ($filtered as $pedido) {
             $response = FactusolPedido::post($token, $pedido);
@@ -113,6 +123,7 @@ class FactusolPedidoController extends Controller
 
             $response = Pedido::put($credential->apikey, $data);
         }
+
         return redirect()->route('factusol.pedidos.index')->with('success', 'Pedidos have been updated');
     }
 }

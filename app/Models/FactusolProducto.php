@@ -34,11 +34,4 @@ class FactusolProducto extends Model
 
         return $response;
     }
-
-    public static function filter($response) {
-        
-        foreach ($response as $value) {
-            echo $value;
-        }
-    }
 }

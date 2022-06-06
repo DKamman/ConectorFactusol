@@ -30,9 +30,12 @@ class FactusolPedido extends Model
     }
 
     public function post($token, $body) {
+        unset($body['productos']);
         $data = '{"ejercicio":"2022","tabla":"F_PCL","registro":' . json_encode($body) . '}';
 
-        $response = Http::withOptions([
+        // dd($data);
+
+        Http::withOptions([
             'verify' => false,
         ])->withToken($token)->
         withBody(
@@ -40,10 +43,30 @@ class FactusolPedido extends Model
         )->post(FactusolPedido::$url);
     }
 
+    public function postPedidoProductos($token, $body) {
+        foreach ($body as $product) {
+            $data = '{"ejercicio":"2022","tabla":"F_LPC","registro":' . json_encode($product) . '}';
+
+            $response = Http::withOptions([
+                'verify' => false,
+            ])->withToken($token)->
+            withBody(
+            $data, 'application/json'
+            )->post(FactusolPedido::$url);
+        }
+
+        // var_dump($data);
+
+        // var_dump($response->getReasonPhrase());
+    }
+
     public function filter($response) {
         $pedidos = array();
         $pedido = array();
         $pedidoRecord = array();
+        $producto = array();
+        $productos = array();
+        $productoRecord = array();
         foreach ($response as $record) {
             if ($record['idpedido']) {
                 $pedidoRecord['columna'] = 'CODPCL';
@@ -79,6 +102,54 @@ class FactusolPedido extends Model
                 $pedidoRecord['dato'] = $record['totalimporte'];
                 array_push($pedido, $pedidoRecord);
             }
+            if ($record['productos']) {
+                foreach($record['productos'] as $article) {
+                    // var_dump($producto);
+                    $totPrecio = $article['cantidad'] * $article['precio'];
+
+                    $productoRecord['columna'] = 'CODLPC';
+                    $productoRecord['dato'] = $record['idpedido'];
+                    array_push($producto, $productoRecord);
+
+                    if($article['referencia']) {
+                        $productoRecord['columna'] = 'ARTLPC';
+                        $productoRecord['dato'] = $article['referencia'];
+                        array_push($producto, $productoRecord);
+                        // dd($producto);
+                    }
+                    if($article['nombre']) {
+                        $productoRecord['columna'] = 'DESLPC';
+                        $productoRecord['dato'] = $article['nombre'];
+                        array_push($producto, $productoRecord);
+                    }
+                    if($article['cantidad']) {
+                        $productoRecord['columna'] = 'CANLPC';
+                        $productoRecord['dato'] = $article['cantidad'];
+                        array_push($producto, $productoRecord);
+                    }
+                    if($article['precio']) {
+                        $productoRecord['columna'] = 'PRELPC';
+                        $productoRecord['dato'] = $article['precio'];
+                        array_push($producto, $productoRecord);
+                    } else {
+                        $productoRecord['columna'] = 'PRELPC';
+                        $productoRecord['dato'] = 0;
+                        array_push($producto, $productoRecord);
+                    }
+
+                    $productoRecord['columna'] = 'TOTLPC';
+                    $productoRecord['dato'] = $totPrecio;
+                    array_push($producto, $productoRecord);
+                    
+                    array_push($productos, $producto);
+                    $producto = [];
+                }
+                // dd($productos);
+                $pedido['productos'] = $productos;
+                $productos = [];
+            }
+
+            // dd($pedido);
             array_push($pedidos, $pedido);
             $pedido = [];
         }
