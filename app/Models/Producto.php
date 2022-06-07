@@ -142,7 +142,7 @@ class Producto extends Model
                                         // echo $record['dato']; 
                                         if ($record['dato'] == "") {
                                             $product['familia'] = "";
-                                        }else {
+                                        } else {
                                             $response = Http::withOptions([
                                                 'verify' => false,
                                             ])->withToken($token)
@@ -153,14 +153,20 @@ class Producto extends Model
                                                     "filtro":"CODSEC = \''.$record["dato"].'\'"
                                                 }', 'application/json'
                                             )->post(FactusolProducto::$url)['resultado'];
-            
-                                            foreach ($response as $records) {
-                                                foreach ($records as $record) {
-                                                    if ($record['columna'] == 'DESSEC') {
-                                                        if ($record['dato'] == "") {
-                                                            $product['familia'] = "";
-                                                        } else {
-                                                            $product['familia'] = $record['dato'];
+                                            // var_dump($response);
+
+                                            if (gettype($response) != "array") {
+                                                $product['subfamilia'] = "";
+                                                $product['familia'] = ""; 
+                                            } else {
+                                                foreach ($response as $records) {
+                                                    foreach ($records as $record) {
+                                                        if ($record['columna'] == 'DESSEC') {
+                                                            if ($record['dato'] == "") {
+                                                                $product['familia'] = "";
+                                                            } else {
+                                                                $product['familia'] = $record['dato'];
+                                                            }
                                                         }
                                                     }
                                                 }

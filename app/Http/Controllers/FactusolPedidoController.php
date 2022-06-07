@@ -98,19 +98,17 @@ class FactusolPedidoController extends Controller
         $token = FactusolApi::getBearerToken($credential);
         $body = Pedido::get($credential->apikey);
         $filtered = FactusolPedido::filter($body);
-        // dd($filtered);
         $productos = array();
-
+        
         foreach ($filtered as $pedido) {
             foreach ($pedido['productos'] as $producto) {
                 array_push($productos, $producto);
             }  
         }
 
-        // dd($productos);
-
-        $response = FactusolPedido::postPedidoProductos($token, $productos);
-
+        foreach ($productos as $producto) {
+            $response = FactusolPedido::postPedidoProductos($token, $producto);
+        }
 
         foreach ($filtered as $pedido) {
             $response = FactusolPedido::post($token, $pedido);

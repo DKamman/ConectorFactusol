@@ -33,8 +33,6 @@ class FactusolPedido extends Model
         unset($body['productos']);
         $data = '{"ejercicio":"2022","tabla":"F_PCL","registro":' . json_encode($body) . '}';
 
-        // dd($data);
-
         Http::withOptions([
             'verify' => false,
         ])->withToken($token)->
@@ -44,20 +42,14 @@ class FactusolPedido extends Model
     }
 
     public function postPedidoProductos($token, $body) {
-        foreach ($body as $product) {
-            $data = '{"ejercicio":"2022","tabla":"F_LPC","registro":' . json_encode($product) . '}';
+        $data = '{"ejercicio":"2022","tabla":"F_LPC","registro":' . json_encode($body) . '}';
 
-            $response = Http::withOptions([
-                'verify' => false,
-            ])->withToken($token)->
-            withBody(
-            $data, 'application/json'
-            )->post(FactusolPedido::$url);
-        }
-
-        // var_dump($data);
-
-        // var_dump($response->getReasonPhrase());
+        $response = Http::withOptions([
+            'verify' => false,
+        ])->withToken($token)->
+        withBody(
+        $data, 'application/json'
+        )->post(FactusolPedido::$url);
     }
 
     public function filter($response) {
@@ -67,7 +59,12 @@ class FactusolPedido extends Model
         $producto = array();
         $productos = array();
         $productoRecord = array();
+        $pos = 1;
         foreach ($response as $record) {
+            $pedidoRecord['columna'] = 'TIPPCL';
+            $pedidoRecord['dato'] = '1';
+            array_push($pedido, $pedidoRecord);
+
             if ($record['idpedido']) {
                 $pedidoRecord['columna'] = 'CODPCL';
                 $pedidoRecord['dato'] = $record['idpedido'];
@@ -104,7 +101,6 @@ class FactusolPedido extends Model
             }
             if ($record['productos']) {
                 foreach($record['productos'] as $article) {
-                    // var_dump($producto);
                     $totPrecio = $article['cantidad'] * $article['precio'];
 
                     $productoRecord['columna'] = 'CODLPC';
@@ -115,7 +111,6 @@ class FactusolPedido extends Model
                         $productoRecord['columna'] = 'ARTLPC';
                         $productoRecord['dato'] = $article['referencia'];
                         array_push($producto, $productoRecord);
-                        // dd($producto);
                     }
                     if($article['nombre']) {
                         $productoRecord['columna'] = 'DESLPC';
@@ -140,16 +135,19 @@ class FactusolPedido extends Model
                     $productoRecord['columna'] = 'TOTLPC';
                     $productoRecord['dato'] = $totPrecio;
                     array_push($producto, $productoRecord);
+
+                    $productoRecord['columna'] = 'POSLPC';
+                    $productoRecord['dato'] = $pos;
+                    array_push($producto, $productoRecord);
                     
                     array_push($productos, $producto);
                     $producto = [];
+                    $pos++;
                 }
-                // dd($productos);
                 $pedido['productos'] = $productos;
                 $productos = [];
+                $pos = 1;
             }
-
-            // dd($pedido);
             array_push($pedidos, $pedido);
             $pedido = [];
         }
