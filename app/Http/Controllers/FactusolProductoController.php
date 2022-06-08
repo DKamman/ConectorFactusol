@@ -11,7 +11,7 @@ use App\Models\ClienteCredential;
 
 class FactusolProductoController extends Controller
 {
-    public function index() {
+    public static function index() {
         $productos = FactusolProducto::all();
         $header = FactusolProductoHeader::first();
         if ($header != null) {
@@ -31,7 +31,7 @@ class FactusolProductoController extends Controller
     }
 
     //Gets all products from the Factusol API and renders them in a view
-    public function get(Request $request) {
+    public static function get(Request $request) {
         $name = $request->credential;
         $credential = ClienteCredential::where('name', $name)->first();
 

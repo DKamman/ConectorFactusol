@@ -12,7 +12,7 @@ class FactusolPedido extends Model
 
     public static $url = "https://api.sdelsol.com/admin/EscribirRegistro";
 
-    public function get($token) {
+    public static function get($token) {
         $data = '{"ejercicio":"2022","tabla":"F_PCL","filtro":"CODPCL > 0"}';
 
         $response = Http::withOptions([
@@ -29,7 +29,7 @@ class FactusolPedido extends Model
         return $response;
     }
 
-    public function post($token, $body) {
+    public static function post($token, $body) {
         unset($body['productos']);
         $data = '{"ejercicio":"2022","tabla":"F_PCL","registro":' . json_encode($body) . '}';
 
@@ -41,7 +41,7 @@ class FactusolPedido extends Model
         )->post(FactusolPedido::$url);
     }
 
-    public function postPedidoProductos($token, $body) {
+    public static function postPedidoProductos($token, $body) {
         $data = '{"ejercicio":"2022","tabla":"F_LPC","registro":' . json_encode($body) . '}';
 
         $response = Http::withOptions([
@@ -52,7 +52,7 @@ class FactusolPedido extends Model
         )->post(FactusolPedido::$url);
     }
 
-    public function filter($response) {
+    public static function filter($response) {
         $pedidos = array();
         $pedido = array();
         $pedidoRecord = array();

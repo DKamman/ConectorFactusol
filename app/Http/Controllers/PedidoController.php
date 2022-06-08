@@ -11,7 +11,7 @@ class PedidoController extends Controller
     protected $apikey = '3741b78df9262be12be380987d275c6f';
 
 
-    public function index() {
+    public static function index() {
         $pedidos = Pedido::all();
         $header = PedidoHeader::first();
         if ($header != null) {
@@ -28,7 +28,7 @@ class PedidoController extends Controller
     }
 
     //Gets all orders from the 20Bananas API and and save them in the database
-    public function get() {
+    public static function get() {
         $response = Pedido::get($this->apikey);
         
         if (PedidoHeader::exists()) {
@@ -70,7 +70,7 @@ class PedidoController extends Controller
 
     //Gets all orders from the 20Bananas API and saves them in the database
     //Take a date paramatar so the user can specify to get the pedidos from any date
-    public function getDebug(Request $request) {
+    public static function getDebug(Request $request) {
         $response = Pedido::getDebug($this->apikey, $request->date);
         
         if (PedidoHeader::exists()) {

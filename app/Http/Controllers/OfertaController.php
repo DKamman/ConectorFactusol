@@ -11,7 +11,7 @@ class OfertaController extends Controller
 {
     protected $apikey = '3741b78df9262be12be380987d275c6f';
 
-    public function index() {
+    public static function index() {
         $ofertas = Oferta::all();
         $header = OfertaHeader::first();
         if ($header != null) {
@@ -27,7 +27,7 @@ class OfertaController extends Controller
         ]);
     }
 
-    public function get() {
+    public static function get() {
         $response = Oferta::get($this->apikey);
 
         if (OfertaHeader::exists()) {

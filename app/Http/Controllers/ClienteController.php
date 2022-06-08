@@ -13,7 +13,7 @@ class ClienteController extends Controller
 {
     protected $apikey = '3741b78df9262be12be380987d275c6f';
 
-    public function index() {
+    public static function index() {
         $clients = Cliente::all();
         $header = ClienteHeader::first();
 
@@ -34,7 +34,7 @@ class ClienteController extends Controller
     }
 
     //Gets all clients from the 20Bananas API and renders them in a view
-    public function get(Request $request) {
+    public static function get(Request $request) {
         $response = Cliente::get($request->apikey);
 
         if ($response == 'Unauthorized') {
@@ -72,7 +72,7 @@ class ClienteController extends Controller
      *  @param $credential containing all client credential information
      *  @return view with success or error message
      */
-    public function post($credential = null) {
+    public static function post($credential = null) {
         
         if (is_null($credential)) {
             $credential = ClienteCredential::where('name', request()->credential)->first();

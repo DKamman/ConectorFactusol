@@ -89,7 +89,7 @@ class Cliente extends Model
         return $response;
     }
 
-    public function filter($response) {
+    public static function filter($response) {
         $array = array();
         foreach ($response['resultado'] as $records) {
             $client = array();

@@ -10,7 +10,7 @@ use App\Models\ClienteCredential;
 
 class FactusolClienteController extends Controller
 {
-    public function index() {
+    public static function index() {
         $clientes = FactusolCliente::all();
         $header = FactusolClienteHeader::first();
         if ($header != null) {
@@ -30,7 +30,7 @@ class FactusolClienteController extends Controller
     }
 
     //Gets all clients from the Factusol API and renders them in a view
-    public function get(Request $request) {
+    public static function get(Request $request) {
         $name = $request->credential;
         $credential = ClienteCredential::where('name', $name)->first();
 
