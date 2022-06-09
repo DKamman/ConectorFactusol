@@ -14,7 +14,7 @@ class FactusolPedidoController extends Controller
 {
     protected $apikey = '3741b78df9262be12be380987d275c6f';
 
-    public function index() {
+    public static function index() {
         $pedidos = FactusolPedido::all();
         $header = FactusolPedidoHeader::first();
         if ($header != null) {
@@ -33,7 +33,7 @@ class FactusolPedidoController extends Controller
         ]);
     }
 
-    public function get(Request $request) {
+    public static function get(Request $request) {
         $name = $request->credential;
         $credential = ClienteCredential::where('name', $name)->first();
 
@@ -86,7 +86,7 @@ class FactusolPedidoController extends Controller
         return redirect()->route('factusol.pedidos.index');
     }
 
-    public function post($credential = null) {
+    public static function post($credential = null) {
         
         if (is_null($credential)) {
             $name = request()->credential;         

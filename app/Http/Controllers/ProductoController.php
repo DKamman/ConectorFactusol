@@ -17,7 +17,7 @@ class ProductoController extends Controller
     protected $apikey = '3741b78df9262be12be380987d275c6f';
 
     //Gets all products from the 20Bananas API and renders them in a view
-    public function index() {
+    public static function index() {
         $productos = Producto::all();
         $header = ProductoHeader::first();
 
@@ -38,7 +38,7 @@ class ProductoController extends Controller
     }
 
     //Gets all Products from the 20Bananas API and renders them in a view
-    public function get(Request $request) {
+    public static function get(Request $request) {
         $response = Producto::get($request->apikey);
 
         if ($response == 'Unauthorized') {
@@ -87,7 +87,7 @@ class ProductoController extends Controller
     }
 
     //Gets all Products from the Factusol API and posts them to the 20Bananas database
-    public function post($credential = null) {
+    public static function post($credential = null) {
 
         if (is_null($credential)) {
             $credential = ClienteCredential::where('name', request()->credential)->first();

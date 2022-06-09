@@ -10,7 +10,7 @@ use App\Models\ClienteCredential;
 
 class FactusolOfertaController extends Controller
 {
-    public function index() {
+    public static function index() {
         $ofertas = FactusolOferta::all();
         $header = FactusolOfertaHeader::first();
         if ($header != null) {
@@ -29,7 +29,7 @@ class FactusolOfertaController extends Controller
         ]);
     }
 
-    public function get(Request $request) {
+    public static function get(Request $request) {
         $name = $request->credential;
         $credential = ClienteCredential::where('name', $name)->first();
 
